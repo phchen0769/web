@@ -24,7 +24,7 @@ RUN apk update && apk add --no-cache --update-cache libuv\
 
 RUN npm config set registry https://registry.npmmirror.com/
 
-WORKDIR /workspaces/Remote-diagnosis-vue3-TS
+WORKDIR /workspaces/web
 
 EXPOSE 5173
 
