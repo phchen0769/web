@@ -28,4 +28,4 @@ WORKDIR /workspaces/web
 
 EXPOSE 5173
 
-CMD ["npm", "run", "serve"]
+CMD ["npm", "install"]

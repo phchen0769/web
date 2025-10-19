@@ -44,23 +44,15 @@
 				"mariorodeghiero.vue-theme"
 			]
 		}
-	},
-	"runArgs": [
-		"-p",
-		"5173:5173",
-		"-it",
-		"--rm",
-		"-e",
-		"DOCKER_HOST=0.0.0.0"
-	]
-	// // 声明容器内使用的端口
-	// "appPort": [
-	// 	9527
-	// ],
-	// // Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// // 外部端口
-	// "forwardPorts": [
-	// 	9527
+	}
+	// npm 会自动启用端口，不需要手动指定
+	// "runArgs": [
+	// 	"-p",
+	// 	"5173:5173",
+	// 	"-it",
+	// 	"--rm",
+	// 	"-e",
+	// 	"DOCKER_HOST=0.0.0.0"
 	// ]
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [5000],
