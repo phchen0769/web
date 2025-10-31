@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>列表与超链接知识手册 - "优课教育"网站制作</title>
+    <style>
+      :root {
+        --primary-color: #3498db;
+        --secondary-color: #2ecc71;
+        --accent-color: #e74c3c;
+        --dark-color: #2c3e50;
+        --light-color: #ecf0f1;
+        --text-color: #333;
+        --border-color: #ddd;
+        --code-bg: #f8f9fa;
+        --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        --exercise-bg: #f0f7ff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: #f5f7fa;
+        padding: 0;
+        margin: 0;
+      }
+
+      .container {
+        display: flex;
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        box-shadow: var(--shadow);
+        min-height: 100vh;
+      }
+
+      /* 侧边导航 */
+      .sidebar {
+        width: 280px;
+        background-color: var(--dark-color);
+        color: white;
+        padding: 1.5rem 0;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+      }
+
+      .sidebar-header {
+        padding: 0 1.5rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .sidebar h2 {
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .nav-section {
+        margin-bottom: 1.5rem;
+      }
+
+      .nav-section h3 {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        background-color: rgba(0, 0, 0, 0.2);
+        margin-bottom: 0.5rem;
+      }
+
+      .nav-links {
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-bottom: 0.2rem;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 0.5rem 1.5rem;
+        color: var(--light-color);
+        text-decoration: none;
+        transition: all 0.3s;
+        border-left: 3px solid transparent;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-left-color: var(--primary-color);
+        color: white;
+      }
+
+      /* 主内容区 */
+      .main-content {
+        flex: 1;
+        padding: 2rem;
+        overflow-y: auto;
+      }
+
+      section {
+        margin-bottom: 3rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        scroll-margin-top: 20px;
+      }
+
+      h1 {
+        color: var(--dark-color);
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      h2 {
+        color: var(--primary-color);
+        margin: 1.5rem 0 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      h3 {
+        color: var(--secondary-color);
+        margin: 1.2rem 0 0.8rem;
+      }
+
+      h4 {
+        color: var(--accent-color);
+        margin: 1rem 0 0.5rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      ul,
+      ol {
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+
+      /* 代码样式 */
+      .code-example {
+        background-color: var(--code-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 1rem;
+        margin: 1rem 0;
+        font-family: "Courier New", monospace;
+        overflow-x: auto;
+      }
+
+      .code-example code {
+        display: block;
+        white-space: pre;
+      }
+
+      .property-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+
+      .property-table th,
+      .property-table td {
+        border: 1px solid var(--border-color);
+        padding: 0.8rem;
+        text-align: left;
+      }
+
+      .property-table th {
+        background-color: var(--light-color);
+      }
+
+      .property-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      /* 演示区域 */
+      .demo-box {
+        border: 1px dashed var(--border-color);
+        padding: 1rem;
+        margin: 1rem 0;
+        background-color: #f9f9f9;
+      }
+
+      /* 列表演示样式 */
+      .list-demo {
+        margin: 1rem 0;
+      }
+
+      .list-demo ul,
+      .list-demo ol {
+        margin-left: 2rem;
+      }
+
+      .definition-list {
+        max-width: 600px;
+      }
+
+      .definition-list dt {
+        font-weight: bold;
+        margin-top: 1rem;
+        color: var(--primary-color);
+      }
+
+      .definition-list dd {
+        margin-left: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      /* 超链接演示样式 */
+      .link-demo a {
+        margin-right: 1rem;
+      }
+
+      .anchor-demo {
+        height: 400px;
+        overflow-y: auto;
+        border: 1px solid var(--border-color);
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+
+      .anchor-section {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      /* 练习区域 */
+      .exercise {
+        background-color: var(--exercise-bg);
+        border-left: 4px solid var(--primary-color);
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0 4px 4px 0;
+      }
+
+      .exercise h4 {
+        color: var(--primary-color);
+        margin-top: 0;
+      }
+
+      .exercise-box {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 4px;
+        margin: 1rem 0;
+        border: 1px solid var(--border-color);
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+
+        .main-content {
+          max-height: none;
+        }
+      }
+
+      /* 特殊样式 */
+      .note {
+        background-color: #fff9e6;
+        border-left: 4px solid #ffc107;
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+
+      .tip {
+        background-color: #e8f5e9;
+        border-left: 4px solid #4caf50;
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 侧边导航 -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1>列表与超链接</h1>
+          <p>"优课教育"网站制作</p>
+        </div>
+
+        <div class="nav-section">
+          <h3>列表标签</h3>
+          <ul class="nav-links">
+            <li><a href="#unordered-list" class="active">无序列表</a></li>
+            <li><a href="#ordered-list">有序列表</a></li>
+            <li><a href="#definition-list">定义列表</a></li>
+            <li><a href="#nested-list">列表的嵌套应用</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h3>CSS控制列表样式</h3>
+          <ul class="nav-links">
+            <li><a href="#list-style">list-style复合属性</a></li>
+            <li><a href="#background-marker">背景图像定义列表项目符号</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h3>超链接标签</h3>
+          <ul class="nav-links">
+            <li><a href="#hyperlink">创建超链接</a></li>
+            <li><a href="#anchor-link">锚点链接</a></li>
+            <li><a href="#link-pseudo-classes">链接伪类控制超链接</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- 主内容区 -->
+      <main class="main-content">
+        <!-- 列表与超链接简介 -->
+        <section id="intro">
+          <h1>列表与超链接知识手册</h1>
+          <p>
+            列表和超链接是网页中必不可少的元素，能够有效地组织和连接网页内容，提高用户体验。
+          </p>
+
+          <h2>列表与超链接的作用</h2>
+          <ul>
+            <li>
+              <strong>有序组织内容</strong> -
+              列表可以将相关内容分组展示，使页面结构清晰
+            </li>
+            <li>
+              <strong>提高可读性</strong> - 列表形式便于用户快速扫描和理解内容
+            </li>
+            <li>
+              <strong>连接相关内容</strong> -
+              超链接可以将不同页面或内容区域连接起来
+            </li>
+            <li><strong>增强导航功能</strong> - 超链接是实现网站导航的基础</li>
+          </ul>
+        </section>
+
+        <!-- 无序列表 -->
+        <section id="unordered-list">
+          <h2>无序列表</h2>
+          <p>无序列表用于表示一组没有特定顺序的项目列表。</p>
+
+          <h3>无序列表的基本语法</h3>
+          <div class="code-example">
+            <code
+              >&lt;ul&gt; &lt;li&gt;列表项一&lt;/li&gt;
+              &lt;li&gt;列表项二&lt;/li&gt; &lt;li&gt;列表项三&lt;/li&gt;
+              &lt;/ul&gt;</code
+            >
+          </div>
+
+          <h3>无序列表的特点</h3>
+          <ul>
+            <li>列表项没有特定的顺序</li>
+            <li>默认使用实心圆点作为项目符号</li>
+            <li>可以通过CSS自定义项目符号样式</li>
+          </ul>
+
+          <div class="demo-box">
+            <h4>无序列表示例</h4>
+            <div class="list-demo">
+              <ul>
+                <li>前端开发课程</li>
+                <li>后端开发课程</li>
+                <li>UI/UX设计课程</li>
+                <li>数据科学课程</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="note">
+            <p><strong>注意：</strong></p>
+            <ol>
+              <li>
+                无序列表拥有type属性，用于指定不同的列表项目符号。但是HTML中不赞成使用type属性，一般通过CSS样式属性替代。
+              </li>
+              <li>
+                在&lt;ul&gt;&lt;/ul&gt;中只能嵌套&lt;li&gt;&lt;/li&gt;，&lt;li&gt;与&lt;/li&gt;之间相当于一个容器，可以嵌套其他元素。
+              </li>
+            </ol>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：创建无序列表</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个无序列表，包含以下课程分类：</p>
+              <ul>
+                <li>编程语言</li>
+                <li>前端开发</li>
+                <li>后端开发</li>
+                <li>移动开发</li>
+                <li>数据科学</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>在HTML中为什么不建议使用type属性来设置无序列表的项目符号？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 有序列表 -->
+        <section id="ordered-list">
+          <h2>有序列表</h2>
+          <p>有序列表用于表示一组有特定顺序或步骤的项目列表。</p>
+
+          <h3>有序列表的基本语法</h3>
+          <div class="code-example">
+            <code
+              >&lt;ol&gt; &lt;li&gt;第一步&lt;/li&gt;
+              &lt;li&gt;第二步&lt;/li&gt; &lt;li&gt;第三步&lt;/li&gt;
+              &lt;/ol&gt;</code
+            >
+          </div>
+
+          <h3>有序列表的特点</h3>
+          <ul>
+            <li>列表项有特定的顺序</li>
+            <li>默认使用数字作为项目编号</li>
+            <li>可以通过CSS自定义编号样式</li>
+          </ul>
+
+          <div class="demo-box">
+            <h4>有序列表示例</h4>
+            <div class="list-demo">
+              <ol>
+                <li>注册优课教育账号</li>
+                <li>选择感兴趣的课程</li>
+                <li>完成课程学习</li>
+                <li>参加在线测试</li>
+                <li>获得结业证书</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="note">
+            <p>
+              <strong>注意：</strong
+              >有序列表ol和列表项li拥有一些标签属性。例如，type、start、value等，但在网页中不会使用，一般通过CSS样式属性替代，读者了解即可。
+            </p>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：创建有序列表</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个有序列表，描述学习前端开发的步骤：</p>
+              <ol>
+                <li>学习HTML基础知识</li>
+                <li>掌握CSS样式设计</li>
+                <li>学习JavaScript编程</li>
+                <li>了解前端框架</li>
+                <li>完成实战项目</li>
+              </ol>
+
+              <p><strong>练习2：思考题</strong></p>
+              <p>在什么情况下应该使用有序列表而不是无序列表？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 定义列表 -->
+        <section id="definition-list">
+          <h2>定义列表</h2>
+          <p>定义列表用于表示术语及其定义的列表。</p>
+
+          <h3>定义列表的基本语法</h3>
+          <div class="code-example">
+            <code
+              >&lt;dl&gt; &lt;dt&gt;术语一&lt;/dt&gt;
+              &lt;dd&gt;术语一的定义或描述&lt;/dd&gt;
+              &lt;dt&gt;术语二&lt;/dt&gt;
+              &lt;dd&gt;术语二的定义或描述&lt;/dd&gt; &lt;/dl&gt;</code
+            >
+          </div>
+
+          <h3>定义列表的特点</h3>
+          <ul>
+            <li>由术语(dt)和定义(dd)组成</li>
+            <li>没有项目符号或编号</li>
+            <li>常用于词汇表、FAQ等场景</li>
+          </ul>
+
+          <div class="demo-box">
+            <h4>定义列表示例</h4>
+            <div class="list-demo definition-list">
+              <dl>
+                <dt>HTML</dt>
+                <dd>超文本标记语言，用于创建网页结构</dd>
+                <dt>CSS</dt>
+                <dd>层叠样式表，用于控制网页的外观和布局</dd>
+                <dt>JavaScript</dt>
+                <dd>一种脚本语言，用于实现网页的交互功能</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="tip">
+            <p>
+              <strong>应用技巧：</strong
+              >在网页设计中，定义列表常用于实现图文混排效果。&lt;dt&gt;标签中插入图片，&lt;dd&gt;标签中放入对图片解释说明的文字。
+            </p>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：创建定义列表</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个定义列表，介绍以下前端开发相关术语：</p>
+              <ul>
+                <li>响应式设计 - 使网页在不同设备上都能良好显示的设计方法</li>
+                <li>Flexbox - 一种CSS布局模型，用于创建灵活的布局</li>
+                <li>Grid布局 - 一种二维CSS布局系统</li>
+              </ul>
+
+              <p><strong>练习2：应用题</strong></p>
+              <p>如何使用定义列表实现一个FAQ（常见问题解答）页面？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 列表的嵌套应用 -->
+        <section id="nested-list">
+          <h2>列表的嵌套应用</h2>
+          <p>列表可以相互嵌套，创建更复杂的层次结构。</p>
+
+          <h3>列表嵌套的基本语法</h3>
+          <div class="code-example">
+            <code
+              >&lt;ul&gt; &lt;li&gt;一级列表项 &lt;ul&gt;
+              &lt;li&gt;二级列表项&lt;/li&gt; &lt;li&gt;二级列表项&lt;/li&gt;
+              &lt;/ul&gt; &lt;/li&gt; &lt;li&gt;一级列表项&lt;/li&gt;
+              &lt;/ul&gt;</code
+            >
+          </div>
+
+          <div class="demo-box">
+            <h4>列表嵌套示例</h4>
+            <div class="list-demo">
+              <ul>
+                <li>
+                  编程语言
+                  <ul>
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>Java</li>
+                  </ul>
+                </li>
+                <li>
+                  前端开发
+                  <ul>
+                    <li>HTML/CSS</li>
+                    <li>
+                      JavaScript框架
+                      <ul>
+                        <li>React</li>
+                        <li>Vue</li>
+                        <li>Angular</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  数据科学
+                  <ul>
+                    <li>数据分析</li>
+                    <li>机器学习</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：创建嵌套列表</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个嵌套列表，展示"优课教育"的课程分类结构：</p>
+              <ul>
+                <li>
+                  编程开发
+                  <ul>
+                    <li>
+                      前端开发
+                      <ul>
+                        <li>HTML/CSS基础</li>
+                        <li>JavaScript进阶</li>
+                        <li>React框架</li>
+                      </ul>
+                    </li>
+                    <li>
+                      后端开发
+                      <ul>
+                        <li>Node.js</li>
+                        <li>Python Django</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  设计创作
+                  <ul>
+                    <li>UI设计</li>
+                    <li>UX设计</li>
+                  </ul>
+                </li>
+              </ul>
+
+              <p><strong>练习2：思考题</strong></p>
+              <p>在什么情况下应该使用嵌套列表？嵌套列表有什么优缺点？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- list-style复合属性 -->
+        <section id="list-style">
+          <h2>CSS控制列表样式 - list-style复合属性</h2>
+          <p>
+            list-style属性是设置列表样式的简写属性，可以同时设置列表的项目符号类型、位置和图像。
+          </p>
+
+          <h3>list-style属性的语法</h3>
+          <div class="code-example">
+            <code
+              >/* 语法格式 */ list-style: list-style-type list-style-position
+              list-style-image; /* 示例 */ list-style: square inside; /*
+              方形符号，内部位置 */ list-style: none; /* 无项目符号 */
+              list-style: url('marker.png') outside; /*
+              使用图像作为项目符号，外部位置 */</code
+            >
+          </div>
+
+          <h3>list-style-type属性</h3>
+          <p>设置列表项标记的类型：</p>
+          <ul>
+            <li><code>disc</code> - 实心圆（默认）</li>
+            <li><code>circle</code> - 空心圆</li>
+            <li><code>square</code> - 实心方块</li>
+            <li><code>decimal</code> - 数字</li>
+            <li><code>lower-roman</code> - 小写罗马数字</li>
+            <li><code>upper-roman</code> - 大写罗马数字</li>
+            <li><code>lower-alpha</code> - 小写字母</li>
+            <li><code>upper-alpha</code> - 大写字母</li>
+            <li><code>none</code> - 无标记</li>
+          </ul>
+
+          <h3>list-style-position属性</h3>
+          <p>设置列表项标记的位置：</p>
+          <ul>
+            <li><code>inside</code> - 标记位于列表项内容内部</li>
+            <li><code>outside</code> - 标记位于列表项内容外部（默认）</li>
+          </ul>
+
+          <div class="demo-box">
+            <h4>list-style属性示例</h4>
+            <div class="list-demo">
+              <ul style="list-style: square inside">
+                <li>内部方形标记 - 标记位于内容内部</li>
+                <li>内部方形标记 - 标记位于内容内部</li>
+              </ul>
+              <ul style="list-style: lower-alpha outside">
+                <li>外部小写字母标记 - 标记位于内容外部</li>
+                <li>外部小写字母标记 - 标记位于内容外部</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用list-style属性</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个无序列表，要求：</p>
+              <ul>
+                <li>使用大写罗马数字作为项目符号</li>
+                <li>项目符号位于内容内部</li>
+                <li>使用list-style复合属性实现</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>
+                <code>list-style-position: inside;</code>和<code
+                  >list-style-position: outside;</code
+                >有什么区别？
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 背景图像定义列表项目符号 -->
+        <section id="background-marker">
+          <h2>背景图像定义列表项目符号</h2>
+          <p>
+            除了使用预定义的项目符号，还可以使用背景图像自定义列表项目符号。
+          </p>
+
+          <h3>使用背景图像定义项目符号的方法</h3>
+          <div class="code-example">
+            <code
+              >ul { list-style: none; /* 移除默认项目符号 */ padding-left: 0; /*
+              移除默认内边距 */ } li { padding-left: 30px; /* 为背景图像留出空间
+              */ background-image: url('marker.png'); /* 设置背景图像 */
+              background-repeat: no-repeat; /* 不重复背景图像 */
+              background-position: left center; /* 背景图像位置 */
+              background-size: 20px 20px; /* 背景图像尺寸 */ }</code
+            >
+          </div>
+
+          <div class="demo-box">
+            <h4>背景图像项目符号示例</h4>
+            <div class="list-demo">
+              <ul style="list-style: none; padding-left: 0">
+                <li
+                  style="
+                    padding-left: 30px;
+                    background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 20 20\'><circle cx=\'10\' cy=\'10\' r=\'8\' fill=\'%233498db\'/></svg>');
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                    background-size: 20px 20px;
+                  "
+                >
+                  自定义蓝色圆形标记
+                </li>
+                <li
+                  style="
+                    padding-left: 30px;
+                    background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 20 20\'><rect x=\'5\' y=\'5\' width=\'10\' height=\'10\' fill=\'%232ecc71\'/></svg>');
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                    background-size: 20px 20px;
+                  "
+                >
+                  自定义绿色方形标记
+                </li>
+                <li
+                  style="
+                    padding-left: 30px;
+                    background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 20 20\'><polygon points=\'10,2 18,18 2,18\' fill=\'%23e74c3c\'/></svg>');
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                    background-size: 20px 20px;
+                  "
+                >
+                  自定义红色三角形标记
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用背景图像定义项目符号</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个使用背景图像作为项目符号的列表，要求：</p>
+              <ul>
+                <li>移除默认列表样式</li>
+                <li>使用自定义图像作为项目符号</li>
+                <li>项目符号大小为16x16像素</li>
+                <li>项目符号垂直居中显示</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>
+                使用背景图像定义列表项目符号相比使用list-style-type有什么优势？
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 创建超链接 -->
+        <section id="hyperlink">
+          <h2>创建超链接</h2>
+          <p>超链接是网页中用于从一个页面跳转到另一个页面的元素。</p>
+
+          <h3>超链接的基本语法</h3>
+          <div class="code-example">
+            <code>&lt;a href="目标URL"&gt;链接文本&lt;/a&gt;</code>
+          </div>
+
+          <h3>超链接的类型</h3>
+          <ul>
+            <li><strong>外部链接</strong> - 链接到其他网站</li>
+            <li><strong>内部链接</strong> - 链接到同一网站的其他页面</li>
+            <li><strong>空链接</strong> - 暂时没有确定链接目标</li>
+            <li><strong>下载链接</strong> - 链接到可下载文件</li>
+            <li><strong>电子邮件链接</strong> - 打开电子邮件客户端</li>
+          </ul>
+
+          <div class="demo-box">
+            <h4>超链接示例</h4>
+            <div class="link-demo">
+              <a href="https://www.example.com">外部链接</a>
+              <a href="about.html">内部链接</a>
+              <a href="#">空链接</a>
+              <a href="document.pdf" download>下载链接</a>
+              <a href="mailto:info@example.com">电子邮件链接</a>
+            </div>
+          </div>
+
+          <div class="note">
+            <p><strong>注意：</strong></p>
+            <ol>
+              <li>
+                暂时没有确定链接目标时，通常将&lt;a&gt;标签的href属性值定义为"#"(即href="#")，表示该链接暂时为一个空链接。
+              </li>
+              <li>
+                在网页中，不仅可以为文本创建超链接，还可以为图像、表格、音频、视频等网页元素添加超链接。
+              </li>
+            </ol>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：创建超链接</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个包含多种类型超链接的导航菜单：</p>
+              <ul>
+                <li>首页（链接到index.html）</li>
+                <li>课程介绍（空链接）</li>
+                <li>师资力量（链接到teachers.html）</li>
+                <li>联系我们（电子邮件链接）</li>
+                <li>资料下载（链接到materials.zip）</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>为什么在开发过程中经常使用空链接（href="#"）？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 锚点链接 -->
+        <section id="anchor-link">
+          <h2>锚点链接</h2>
+          <p>锚点链接用于在同一页面内跳转到特定位置。</p>
+
+          <h3>创建锚点链接的步骤</h3>
+          <ol>
+            <li><strong>定义锚点</strong> - 使用id属性标记目标位置</li>
+            <li>
+              <strong>创建链接</strong> - 使用<code>&lt;a href="#id名"&gt;</code
+              >创建链接文本
+            </li>
+          </ol>
+
+          <div class="code-example">
+            <code
+              >&lt;!-- 定义锚点 --&gt; &lt;h2
+              id="section1"&gt;第一部分&lt;/h2&gt;
+              &lt;p&gt;第一部分的内容...&lt;/p&gt; &lt;!-- 创建链接 --&gt; &lt;a
+              href="#section1"&gt;跳转到第一部分&lt;/a&gt;</code
+            >
+          </div>
+
+          <div class="demo-box">
+            <h4>锚点链接示例</h4>
+            <div class="anchor-demo">
+              <div class="anchor-section">
+                <h3 id="html-intro">HTML简介</h3>
+                <p>HTML是网页开发的基础语言...</p>
+                <a href="#css-intro">跳转到CSS简介</a>
+              </div>
+              <div class="anchor-section">
+                <h3 id="css-intro">CSS简介</h3>
+                <p>CSS用于控制网页的样式和布局...</p>
+                <a href="#js-intro">跳转到JavaScript简介</a>
+              </div>
+              <div class="anchor-section">
+                <h3 id="js-intro">JavaScript简介</h3>
+                <p>JavaScript为网页添加交互功能...</p>
+                <a href="#html-intro">返回HTML简介</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：创建锚点链接</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个包含锚点链接的FAQ页面，要求：</p>
+              <ul>
+                <li>页面顶部有目录，链接到各个问题</li>
+                <li>每个问题使用id属性标记</li>
+                <li>每个问题回答后有一个"返回顶部"的链接</li>
+              </ul>
+
+              <p><strong>练习2：思考题</strong></p>
+              <p>锚点链接在什么场景下特别有用？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 链接伪类控制超链接 -->
+        <section id="link-pseudo-classes">
+          <h2>链接伪类控制超链接</h2>
+          <p>CSS提供了链接伪类，可以为超链接的不同状态设置不同的样式。</p>
+
+          <h3>链接伪类</h3>
+          <ul>
+            <li><code>a:link</code> - 未访问的链接</li>
+            <li><code>a:visited</code> - 已访问的链接</li>
+            <li><code>a:hover</code> - 鼠标悬停在链接上</li>
+            <li><code>a:active</code> - 链接被点击时</li>
+          </ul>
+
+          <div class="code-example">
+            <code
+              >/* 未访问的链接 */ a:link { color: blue; text-decoration: none; }
+              /* 已访问的链接 */ a:visited { color: purple; } /* 鼠标悬停 */
+              a:hover { color: red; text-decoration: underline; } /*
+              链接被点击时 */ a:active { color: green; }</code
+            >
+          </div>
+
+          <div class="demo-box">
+            <h4>链接伪类示例</h4>
+            <div class="link-demo">
+              <a href="#" style="color: blue; text-decoration: none"
+                >未访问链接</a
+              >
+              <a href="#" style="color: purple">已访问链接</a>
+              <a href="#" style="color: red; text-decoration: underline"
+                >悬停状态</a
+              >
+              <a href="#" style="color: green">点击状态</a>
+            </div>
+          </div>
+
+          <div class="note">
+            <p><strong>注意：</strong></p>
+            <ol>
+              <li>
+                同时使用链接的4种伪类时，需要按照a:link、a:visited、a:hover和a:active的顺序书写，否则定义的样式可能不起作用。
+              </li>
+              <li>
+                除了文本样式之外，链接伪类还可用于控制超链接的背景、边框等样式。
+              </li>
+            </ol>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用链接伪类</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个导航菜单，要求：</p>
+              <ul>
+                <li>未访问链接为蓝色，无下划线</li>
+                <li>已访问链接为深蓝色</li>
+                <li>鼠标悬停时变为红色，有下划线</li>
+                <li>点击时变为绿色</li>
+                <li>按照正确的顺序定义链接伪类</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>为什么链接伪类需要按照特定的顺序定义？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 综合练习 -->
+        <section id="comprehensive">
+          <h2>综合实战练习</h2>
+          <p>结合所学知识，创建一个"优课教育"网站的导航菜单和课程列表。</p>
+
+          <div class="exercise">
+            <div class="exercise-box">
+              <p><strong>练习：创建"优课教育"网站导航和课程列表</strong></p>
+              <p>创建一个完整的HTML页面，包含以下元素：</p>
+              <ol>
+                <li>
+                  一个水平导航菜单，包含以下链接：
+                  <ul>
+                    <li>首页（链接到index.html）</li>
+                    <li>课程中心（空链接）</li>
+                    <li>师资团队（链接到teachers.html）</li>
+                    <li>关于我们（空链接）</li>
+                    <li>联系我们（电子邮件链接）</li>
+                  </ul>
+                </li>
+                <li>为导航菜单添加适当的链接伪类样式</li>
+                <li>
+                  一个课程分类列表，使用无序列表展示：
+                  <ul>
+                    <li>
+                      编程开发
+                      <ul>
+                        <li>前端开发</li>
+                        <li>后端开发</li>
+                        <li>移动开发</li>
+                      </ul>
+                    </li>
+                    <li>
+                      设计创作
+                      <ul>
+                        <li>UI设计</li>
+                        <li>UX设计</li>
+                        <li>平面设计</li>
+                      </ul>
+                    </li>
+                    <li>
+                      数据科学
+                      <ul>
+                        <li>数据分析</li>
+                        <li>机器学习</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>使用CSS自定义列表样式</li>
+                <li>在页面底部添加锚点链接，可以快速跳转到页面顶部</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      // 平滑滚动
+      document.querySelectorAll(".nav-links a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+
+          // 使用scrollIntoView实现平滑滚动
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+
+          // 更新活动链接
+          document.querySelectorAll(".nav-links a").forEach((link) => {
+            link.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+
+      // 根据滚动位置更新活动链接
+      window.addEventListener("scroll", function () {
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.scrollY >= sectionTop - 100) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

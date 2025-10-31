@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>表格与表单知识手册 - "千年之恋"注册页面制作</title>
+    <style>
+      :root {
+        --primary-color: #3498db;
+        --secondary-color: #2ecc71;
+        --accent-color: #e74c3c;
+        --dark-color: #2c3e50;
+        --light-color: #ecf0f1;
+        --text-color: #333;
+        --border-color: #ddd;
+        --code-bg: #f8f9fa;
+        --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        --exercise-bg: #f0f7ff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: #f5f7fa;
+        padding: 0;
+        margin: 0;
+      }
+
+      .container {
+        display: flex;
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        box-shadow: var(--shadow);
+        min-height: 100vh;
+      }
+
+      /* 侧边导航 */
+      .sidebar {
+        width: 280px;
+        background-color: var(--dark-color);
+        color: white;
+        padding: 1.5rem 0;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+      }
+
+      .sidebar-header {
+        padding: 0 1.5rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .sidebar h2 {
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .nav-section {
+        margin-bottom: 1.5rem;
+      }
+
+      .nav-section h3 {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        background-color: rgba(0, 0, 0, 0.2);
+        margin-bottom: 0.5rem;
+      }
+
+      .nav-links {
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-bottom: 0.2rem;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 0.5rem 1.5rem;
+        color: var(--light-color);
+        text-decoration: none;
+        transition: all 0.3s;
+        border-left: 3px solid transparent;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-left-color: var(--primary-color);
+        color: white;
+      }
+
+      /* 主内容区 */
+      .main-content {
+        flex: 1;
+        padding: 2rem;
+        overflow-y: auto;
+      }
+
+      section {
+        margin-bottom: 3rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        scroll-margin-top: 20px;
+      }
+
+      h1 {
+        color: var(--dark-color);
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      h2 {
+        color: var(--primary-color);
+        margin: 1.5rem 0 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      h3 {
+        color: var(--secondary-color);
+        margin: 1.2rem 0 0.8rem;
+      }
+
+      h4 {
+        color: var(--accent-color);
+        margin: 1rem 0 0.5rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      ul,
+      ol {
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+
+      /* 代码样式 */
+      .code-example {
+        background-color: var(--code-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 1rem;
+        margin: 1rem 0;
+        font-family: "Courier New", monospace;
+        overflow-x: auto;
+      }
+
+      .code-example code {
+        display: block;
+        white-space: pre;
+      }
+
+      .property-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+
+      .property-table th,
+      .property-table td {
+        border: 1px solid var(--border-color);
+        padding: 0.8rem;
+        text-align: left;
+      }
+
+      .property-table th {
+        background-color: var(--light-color);
+      }
+
+      .property-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      /* 演示区域 */
+      .demo-box {
+        border: 1px dashed var(--border-color);
+        padding: 1rem;
+        margin: 1rem 0;
+        background-color: #f9f9f9;
+      }
+
+      /* 表格演示样式 */
+      .table-demo {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+
+      .table-demo th,
+      .table-demo td {
+        border: 1px solid var(--border-color);
+        padding: 0.5rem;
+        text-align: center;
+      }
+
+      .table-demo th {
+        background-color: var(--light-color);
+      }
+
+      /* 表单演示样式 */
+      .form-demo {
+        max-width: 600px;
+        margin: 1rem 0;
+        padding: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        background-color: #f9f9f9;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+      }
+
+      /* 练习区域 */
+      .exercise {
+        background-color: var(--exercise-bg);
+        border-left: 4px solid var(--primary-color);
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0 4px 4px 0;
+      }
+
+      .exercise h4 {
+        color: var(--primary-color);
+        margin-top: 0;
+      }
+
+      .exercise-box {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 4px;
+        margin: 1rem 0;
+        border: 1px solid var(--border-color);
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+
+        .main-content {
+          max-height: none;
+        }
+      }
+
+      /* 特殊样式 */
+      .note {
+        background-color: #fff9e6;
+        border-left: 4px solid #ffc107;
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+
+      .tip {
+        background-color: #e8f5e9;
+        border-left: 4px solid #4caf50;
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 侧边导航 -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1>表格与表单知识手册</h1>
+          <p>"千年之恋"注册页面制作</p>
+        </div>
+
+        <div class="nav-section">
+          <h3>表格相关标签</h3>
+          <ul class="nav-links">
+            <li><a href="#table-creation" class="active">表格的创建</a></li>
+            <li><a href="#table-tag-attributes">table标签属性</a></li>
+            <li><a href="#tr-tag-attributes">tr标签属性</a></li>
+            <li><a href="#td-tag-attributes">td标签属性</a></li>
+            <li><a href="#th-tag">th标签</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h3>CSS控制表格样式</h3>
+          <ul class="nav-links">
+            <li><a href="#table-border">CSS控制表格边框</a></li>
+            <li><a href="#cell-padding">CSS控制单元格边距</a></li>
+            <li><a href="#cell-size">CSS控制单元格宽高</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h3>表单概述</h3>
+          <ul class="nav-links">
+            <li><a href="#form-intro">初识表单</a></li>
+            <li><a href="#form-creation">创建表单</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h3>基础表单控件</h3>
+          <ul class="nav-links">
+            <li><a href="#input-control">input控件</a></li>
+            <li><a href="#textarea-control">textarea控件</a></li>
+            <li><a href="#select-control">select控件</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h3>新增表单控件</h3>
+          <ul class="nav-links">
+            <li><a href="#new-input-types">新增input控件类型</a></li>
+            <li><a href="#new-input-attributes">新增input控件属性</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <h3>CSS控制表单样式</h3>
+          <ul class="nav-links">
+            <li><a href="#form-styling">CSS控制表单样式</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- 主内容区 -->
+      <main class="main-content">
+        <!-- 表格与表单简介 -->
+        <section id="intro">
+          <h1>表格与表单知识手册</h1>
+          <p>
+            表格和表单是网页中用于数据展示和数据收集的重要元素，在"千年之恋"注册页面制作中起着关键作用。
+          </p>
+
+          <h2>表格与表单的作用</h2>
+          <ul>
+            <li><strong>数据展示</strong> - 表格用于清晰地展示结构化数据</li>
+            <li><strong>数据收集</strong> - 表单用于收集用户输入的信息</li>
+            <li><strong>用户交互</strong> - 表单提供用户与网站交互的界面</li>
+            <li><strong>数据验证</strong> - 表单可以验证用户输入的数据格式</li>
+          </ul>
+        </section>
+
+        <!-- 表格的创建 -->
+        <section id="table-creation">
+          <h2>表格的创建</h2>
+          <p>表格用于在网页中展示结构化数据，由行和列组成。</p>
+
+          <h3>表格的基本结构</h3>
+          <p>创建table表格，离不开以下3对标签：</p>
+          <ul>
+            <li><code>&lt;table&gt;&lt;/table&gt;</code> - 定义一个表格</li>
+            <li>
+              <code>&lt;tr&gt;&lt;/tr&gt;</code> -
+              定义表格中的一行，嵌套在&lt;table&gt;&lt;/table&gt;中
+            </li>
+            <li>
+              <code>&lt;td&gt;&lt;/td&gt;</code> -
+              定义表格中的单元格，嵌套在&lt;tr&gt;&lt;/tr&gt;中
+            </li>
+          </ul>
+
+          <div class="code-example">
+            <code
+              >&lt;table&gt; &lt;tr&gt; &lt;td&gt;单元格1&lt;/td&gt;
+              &lt;td&gt;单元格2&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+              &lt;td&gt;单元格3&lt;/td&gt; &lt;td&gt;单元格4&lt;/td&gt;
+              &lt;/tr&gt; &lt;/table&gt;</code
+            >
+          </div>
+
+          <div class="demo-box">
+            <h4>表格示例</h4>
+            <table class="table-demo">
+              <tr>
+                <td>单元格1</td>
+                <td>单元格2</td>
+              </tr>
+              <tr>
+                <td>单元格3</td>
+                <td>单元格4</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：创建表格</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个3行3列的表格，用于展示学生成绩：</p>
+              <ul>
+                <li>第一行：姓名、语文、数学</li>
+                <li>第二行：张三、85、92</li>
+                <li>第三行：李四、78、88</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>表格的基本结构由哪些标签组成？它们之间的关系是什么？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- table标签属性 -->
+        <section id="table-tag-attributes">
+          <h2>table标签属性</h2>
+          <p>table标签拥有多种属性，可以设置表格的样式和布局。</p>
+
+          <h3>常用table标签属性</h3>
+          <table class="property-table">
+            <thead>
+              <tr>
+                <th>属性</th>
+                <th>说明</th>
+                <th>示例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>width</code></td>
+                <td>设置表格的宽度</td>
+                <td><code>width="500"</code></td>
+              </tr>
+              <tr>
+                <td><code>height</code></td>
+                <td>设置表格的高度</td>
+                <td><code>height="300"</code></td>
+              </tr>
+              <tr>
+                <td><code>border</code></td>
+                <td>设置表格边框的宽度</td>
+                <td><code>border="1"</code></td>
+              </tr>
+              <tr>
+                <td><code>cellspacing</code></td>
+                <td>设置单元格之间的间距</td>
+                <td><code>cellspacing="5"</code></td>
+              </tr>
+              <tr>
+                <td><code>cellpadding</code></td>
+                <td>设置单元格内容与边框之间的间距</td>
+                <td><code>cellpadding="10"</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="demo-box">
+            <h4>table属性示例</h4>
+            <table
+              class="table-demo"
+              style="
+                width: 100%;
+                border: 2px solid #3498db;
+                border-collapse: separate;
+                border-spacing: 5px;
+              "
+            >
+              <tr>
+                <td style="padding: 10px">单元格1</td>
+                <td style="padding: 10px">单元格2</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px">单元格3</td>
+                <td style="padding: 10px">单元格4</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用table属性</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个表格，要求：</p>
+              <ul>
+                <li>宽度为600px</li>
+                <li>边框宽度为2px</li>
+                <li>单元格间距为8px</li>
+                <li>单元格内边距为12px</li>
+                <li>包含2行3列</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>
+                <code>cellspacing</code
+                >和<code>cellpadding</code>属性有什么区别？
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- tr标签属性 -->
+        <section id="tr-tag-attributes">
+          <h2>tr标签属性</h2>
+          <p>tr标签用于定义表格中的行，可以设置行的样式。</p>
+
+          <h3>常用tr标签属性</h3>
+          <table class="property-table">
+            <thead>
+              <tr>
+                <th>属性</th>
+                <th>说明</th>
+                <th>示例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>align</code></td>
+                <td>设置行内容的水平对齐方式</td>
+                <td><code>align="center"</code></td>
+              </tr>
+              <tr>
+                <td><code>valign</code></td>
+                <td>设置行内容的垂直对齐方式</td>
+                <td><code>valign="middle"</code></td>
+              </tr>
+              <tr>
+                <td><code>bgcolor</code></td>
+                <td>设置行的背景颜色</td>
+                <td><code>bgcolor="#f0f0f0"</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="note">
+            <p><strong>注意：</strong></p>
+            <ol>
+              <li>
+                &lt;tr&gt;标签无宽度属性width，其宽度取决于表格标签&lt;table&gt;。
+              </li>
+              <li>
+                可以对&lt;tr&gt;标签应用valign属性，来设置一行内容的垂直对齐方式。
+              </li>
+              <li>
+                不建议对&lt;tr&gt;标签应用background属性，以免出现兼容性问题。
+              </li>
+            </ol>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用tr属性</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个表格，要求：</p>
+              <ul>
+                <li>第一行背景色为浅灰色</li>
+                <li>第一行内容水平居中</li>
+                <li>第二行内容垂直居中对齐</li>
+                <li>包含2行3列</li>
+              </ul>
+
+              <p><strong>练习2：思考题</strong></p>
+              <p>为什么tr标签没有width属性？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- td标签属性 -->
+        <section id="td-tag-attributes">
+          <h2>td标签属性</h2>
+          <p>td标签用于定义表格中的单元格，可以设置单元格的样式。</p>
+
+          <h3>常用td标签属性</h3>
+          <table class="property-table">
+            <thead>
+              <tr>
+                <th>属性</th>
+                <th>说明</th>
+                <th>示例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>width</code></td>
+                <td>设置单元格的宽度</td>
+                <td><code>width="100"</code></td>
+              </tr>
+              <tr>
+                <td><code>height</code></td>
+                <td>设置单元格的高度</td>
+                <td><code>height="50"</code></td>
+              </tr>
+              <tr>
+                <td><code>align</code></td>
+                <td>设置单元格内容的水平对齐方式</td>
+                <td><code>align="center"</code></td>
+              </tr>
+              <tr>
+                <td><code>valign</code></td>
+                <td>设置单元格内容的垂直对齐方式</td>
+                <td><code>valign="middle"</code></td>
+              </tr>
+              <tr>
+                <td><code>colspan</code></td>
+                <td>设置单元格横跨的列数</td>
+                <td><code>colspan="2"</code></td>
+              </tr>
+              <tr>
+                <td><code>rowspan</code></td>
+                <td>设置单元格横跨的行数</td>
+                <td><code>rowspan="2"</code></td>
+              </tr>
+              <tr>
+                <td><code>bgcolor</code></td>
+                <td>设置单元格的背景颜色</td>
+                <td><code>bgcolor="#f0f0f0"</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="note">
+            <p>
+              <strong>注意：</strong
+              >当对某一个&lt;td&gt;标签应用width属性设置宽度时，该列中的所有单元格均会以设置的宽度显示。当对某一个&lt;td&gt;标签应用height属性设置高度时，该行中的所有单元格均会以设置的高度显示。
+            </p>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用td属性</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个课程表表格，要求：</p>
+              <ul>
+                <li>第一行跨5列显示"课程表"标题</li>
+                <li>第一列跨2行显示"时间"</li>
+                <li>包含5行5列</li>
+                <li>使用不同的背景色区分表头和内容</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p><code>colspan</code>和<code>rowspan</code>属性有什么作用？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- th标签 -->
+        <section id="th-tag">
+          <h2>th标签</h2>
+          <p>th标签用于定义表格的表头单元格。</p>
+
+          <h3>th标签的特点</h3>
+          <ul>
+            <li>th标签用来设置表头</li>
+            <li>其文本默认加粗居中显示</li>
+            <li>用法与td标签类似，可以应用相同的属性</li>
+            <li>有助于提高表格的可访问性和语义化</li>
+          </ul>
+
+          <div class="code-example">
+            <code
+              >&lt;table&gt; &lt;tr&gt; &lt;th&gt;姓名&lt;/th&gt;
+              &lt;th&gt;年龄&lt;/th&gt; &lt;th&gt;城市&lt;/th&gt; &lt;/tr&gt;
+              &lt;tr&gt; &lt;td&gt;张三&lt;/td&gt; &lt;td&gt;25&lt;/td&gt;
+              &lt;td&gt;北京&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</code
+            >
+          </div>
+
+          <div class="demo-box">
+            <h4>th标签示例</h4>
+            <table class="table-demo">
+              <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>城市</th>
+              </tr>
+              <tr>
+                <td>张三</td>
+                <td>25</td>
+                <td>北京</td>
+              </tr>
+              <tr>
+                <td>李四</td>
+                <td>30</td>
+                <td>上海</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用th标签</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个学生信息表，要求：</p>
+              <ul>
+                <li>使用th标签定义表头</li>
+                <li>表头包含：学号、姓名、性别、年龄</li>
+                <li>至少包含3行学生数据</li>
+                <li>表头背景色与数据行不同</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>使用th标签代替td标签作为表头有什么好处？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CSS控制表格边框 -->
+        <section id="table-border">
+          <h2>CSS控制表格边框</h2>
+          <p>使用CSS可以更灵活地控制表格的边框样式。</p>
+
+          <h3>CSS边框属性</h3>
+          <ul>
+            <li><code>border-width</code> - 设置边框宽度</li>
+            <li><code>border-style</code> - 设置边框样式</li>
+            <li><code>border-color</code> - 设置边框颜色</li>
+            <li><code>border</code> - 简写属性，同时设置宽度、样式和颜色</li>
+          </ul>
+
+          <div class="code-example">
+            <code
+              >/* 设置表格边框 */ table { width: 280px; height: 280px; border:
+              1px solid #F00; } /* 设置单元格边框 */ td, th { border: 1px solid
+              #F00; }</code
+            >
+          </div>
+
+          <div class="note">
+            <p>
+              <strong>注意：</strong
+              >在设置表格的边框时，也要给单元格设置相应的边框。
+            </p>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用CSS控制表格边框</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个表格，使用CSS设置边框样式：</p>
+              <ul>
+                <li>表格边框：2px实线蓝色</li>
+                <li>单元格边框：1px虚线灰色</li>
+                <li>表头单元格边框：1px实线深灰色</li>
+                <li>包含3行3列</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>为什么在设置表格边框时通常需要同时设置表格和单元格的边框？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CSS控制单元格边距 -->
+        <section id="cell-padding">
+          <h2>CSS控制单元格边距</h2>
+          <p>使用CSS可以控制单元格内容与边框之间的距离。</p>
+
+          <h3>CSS内边距属性</h3>
+          <div class="code-example">
+            <code>/* 设置单元格内边距 */ td { padding: 20px; }</code>
+          </div>
+
+          <div class="note">
+            <p><strong>注意：</strong></p>
+            <ol>
+              <li>行标签&lt;tr&gt;无内边距属性padding和外边距属性margin。</li>
+              <li>
+                外边距属性margin对单元格无效，要想设置相邻单元格边框之间的距离，只能对&lt;table&gt;标签应用HTML标签属性cellspacing。
+              </li>
+            </ol>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用CSS控制单元格边距</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个表格，使用CSS设置边距：</p>
+              <ul>
+                <li>单元格内边距：上下10px，左右15px</li>
+                <li>使用cellspacing属性设置单元格间距为5px</li>
+                <li>包含2行3列</li>
+              </ul>
+
+              <p><strong>练习2：思考题</strong></p>
+              <p>为什么不能使用margin属性设置单元格之间的间距？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CSS控制单元格宽高 -->
+        <section id="cell-size">
+          <h2>CSS控制单元格宽高</h2>
+          <p>使用CSS可以精确控制单元格的宽度和高度。</p>
+
+          <h3>CSS宽高属性</h3>
+          <div class="code-example">
+            <code>/* 设置单元格宽高 */ td { width: 20px; height: 20px; }</code>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用CSS控制单元格宽高</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个表格，使用CSS设置单元格尺寸：</p>
+              <ul>
+                <li>表格宽度：100%</li>
+                <li>第一列宽度：20%</li>
+                <li>第二列宽度：30%</li>
+                <li>第三列宽度：50%</li>
+                <li>所有行高度：40px</li>
+                <li>包含3行3列</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>使用CSS设置单元格宽高与使用HTML属性设置有什么不同？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 初识表单 -->
+        <section id="form-intro">
+          <h2>初识表单</h2>
+          <p>表单是网页中用于收集用户输入信息的区域。</p>
+
+          <h3>表单的组成部分</h3>
+          <ul>
+            <li>
+              <strong>表单域</strong> -
+              相当于一个容器，用来容纳所有的表单控件和提示信息
+            </li>
+            <li>
+              <strong>表单控件</strong> -
+              包含了具体的表单功能项，如单行文本输入框、密码输入框、复选框、提交按钮、重置按钮等
+            </li>
+            <li>
+              <strong>提示信息</strong> - 说明性文字，提示用户如何填写表单
+            </li>
+          </ul>
+
+          <div class="demo-box">
+            <h4>表单示例</h4>
+            <div class="form-demo">
+              <div class="form-group">
+                <label for="username">用户名：</label>
+                <input type="text" id="username" name="username" />
+              </div>
+              <div class="form-group">
+                <label for="password">密码：</label>
+                <input type="password" id="password" name="password" />
+              </div>
+              <div class="form-group">
+                <input type="submit" value="登录" />
+              </div>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：理解表单结构</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：简答题</strong></p>
+              <p>表单由哪三部分组成？每部分的作用是什么？</p>
+
+              <p><strong>练习2：应用题</strong></p>
+              <p>列举三个你经常在网站上见到的表单，并分析它们的组成部分。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 创建表单 -->
+        <section id="form-creation">
+          <h2>创建表单</h2>
+          <p>使用form标签可以创建表单，定义表单域。</p>
+
+          <h3>form标签的基本语法</h3>
+          <div class="code-example">
+            <code
+              >&lt;form action="url地址" method="提交方式" name="表单名称"&gt;
+              各种表单控件 &lt;/form&gt;</code
+            >
+          </div>
+
+          <h3>form标签的常用属性</h3>
+          <table class="property-table">
+            <thead>
+              <tr>
+                <th>属性</th>
+                <th>说明</th>
+                <th>示例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>action</code></td>
+                <td>指定表单数据提交的URL地址</td>
+                <td><code>action="login.php"</code></td>
+              </tr>
+              <tr>
+                <td><code>method</code></td>
+                <td>指定表单数据的提交方式（GET或POST）</td>
+                <td><code>method="POST"</code></td>
+              </tr>
+              <tr>
+                <td><code>name</code></td>
+                <td>指定表单的名称</td>
+                <td><code>name="loginForm"</code></td>
+              </tr>
+              <tr>
+                <td><code>target</code></td>
+                <td>指定在何处打开action URL</td>
+                <td><code>target="_blank"</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="exercise">
+            <h4>练习：创建表单</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个用户注册表单，要求：</p>
+              <ul>
+                <li>表单提交到register.php</li>
+                <li>使用POST方法提交</li>
+                <li>表单名称为registerForm</li>
+                <li>包含用户名和密码输入框</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>GET和POST两种表单提交方式有什么区别？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- input控件 -->
+        <section id="input-control">
+          <h2>input控件</h2>
+          <p>input控件是表单中最常用的控件，可以创建多种类型的输入字段。</p>
+
+          <h3>input控件的基本语法</h3>
+          <div class="code-example">
+            <code
+              >&lt;input type="控件类型" name="字段名称"
+              value="初始值"/&gt;</code
+            >
+          </div>
+
+          <h3>常用的input控件类型</h3>
+          <table class="property-table">
+            <thead>
+              <tr>
+                <th>类型</th>
+                <th>说明</th>
+                <th>示例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>text</code></td>
+                <td>单行文本输入框</td>
+                <td><code>&lt;input type="text" name="username"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>password</code></td>
+                <td>密码输入框</td>
+                <td><code>&lt;input type="password" name="pwd"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>radio</code></td>
+                <td>单选按钮</td>
+                <td>
+                  <code
+                    >&lt;input type="radio" name="gender" value="male"&gt;</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>checkbox</code></td>
+                <td>复选框</td>
+                <td>
+                  <code
+                    >&lt;input type="checkbox" name="hobby"
+                    value="reading"&gt;</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>submit</code></td>
+                <td>提交按钮</td>
+                <td><code>&lt;input type="submit" value="提交"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>reset</code></td>
+                <td>重置按钮</td>
+                <td><code>&lt;input type="reset" value="重置"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>button</code></td>
+                <td>普通按钮</td>
+                <td><code>&lt;input type="button" value="点击"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>file</code></td>
+                <td>文件上传</td>
+                <td><code>&lt;input type="file" name="avatar"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>hidden</code></td>
+                <td>隐藏字段</td>
+                <td>
+                  <code
+                    >&lt;input type="hidden" name="userid" value="123"&gt;</code
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="demo-box">
+            <h4>input控件示例</h4>
+            <div class="form-demo">
+              <div class="form-group">
+                <label
+                  >文本输入：<input type="text" placeholder="请输入文本"
+                /></label>
+              </div>
+              <div class="form-group">
+                <label
+                  >密码输入：<input type="password" placeholder="请输入密码"
+                /></label>
+              </div>
+              <div class="form-group">
+                <label
+                  >单选按钮：
+                  <input type="radio" name="demo-radio" value="1" /> 选项1
+                  <input type="radio" name="demo-radio" value="2" /> 选项2
+                </label>
+              </div>
+              <div class="form-group">
+                <label
+                  >复选框：
+                  <input type="checkbox" name="demo-checkbox" value="A" /> 选项A
+                  <input type="checkbox" name="demo-checkbox" value="B" /> 选项B
+                </label>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="提交" />
+                <input type="reset" value="重置" />
+              </div>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用input控件</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个用户信息收集表单，包含以下input控件：</p>
+              <ul>
+                <li>文本输入框（姓名）</li>
+                <li>密码输入框（密码）</li>
+                <li>单选按钮（性别）</li>
+                <li>复选框（兴趣爱好，至少3个）</li>
+                <li>提交按钮和重置按钮</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>
+                单选按钮和复选框在使用上有什么区别？如何确保同一组的单选按钮只能选择一个？
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- textarea控件 -->
+        <section id="textarea-control">
+          <h2>textarea控件</h2>
+          <p>textarea控件用于创建多行文本输入区域。</p>
+
+          <h3>textarea控件的基本语法</h3>
+          <div class="code-example">
+            <code
+              >&lt;textarea cols="每行中的字符数" rows="显示的行数"
+              name="字段名称"&gt; 文本内容 &lt;/textarea&gt;</code
+            >
+          </div>
+
+          <div class="demo-box">
+            <h4>textarea控件示例</h4>
+            <div class="form-demo">
+              <div class="form-group">
+                <label for="message">留言：</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  cols="50"
+                  placeholder="请输入您的留言..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用textarea控件</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个留言板表单，要求：</p>
+              <ul>
+                <li>包含姓名输入框</li>
+                <li>包含邮箱输入框</li>
+                <li>包含多行文本输入区域（留言内容）</li>
+                <li>留言区域显示5行，每行约40个字符</li>
+                <li>包含提交按钮</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>textarea控件和input type="text"控件在使用上有什么不同？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- select控件 -->
+        <section id="select-control">
+          <h2>select控件</h2>
+          <p>
+            select控件用于创建下拉列表，用户可以从预定义的选项中选择一个或多个。
+          </p>
+
+          <h3>select控件的基本语法</h3>
+          <div class="code-example">
+            <code
+              >&lt;select name="字段名称"&gt; &lt;option
+              value="值1"&gt;选项1&lt;/option&gt; &lt;option
+              value="值2"&gt;选项2&lt;/option&gt; &lt;option
+              value="值3"&gt;选项3&lt;/option&gt; &lt;/select&gt;</code
+            >
+          </div>
+
+          <h3>select和option标签属性</h3>
+          <table class="property-table">
+            <thead>
+              <tr>
+                <th>标签</th>
+                <th>属性</th>
+                <th>说明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="3"><code>select</code></td>
+                <td><code>name</code></td>
+                <td>设置下拉列表的名称</td>
+              </tr>
+              <tr>
+                <td><code>size</code></td>
+                <td>设置可见选项的数目</td>
+              </tr>
+              <tr>
+                <td><code>multiple</code></td>
+                <td>设置可选择多个选项</td>
+              </tr>
+              <tr>
+                <td rowspan="3"><code>option</code></td>
+                <td><code>value</code></td>
+                <td>设置选项的值</td>
+              </tr>
+              <tr>
+                <td><code>selected</code></td>
+                <td>设置选项为默认选中</td>
+              </tr>
+              <tr>
+                <td><code>disabled</code></td>
+                <td>设置选项为禁用</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="demo-box">
+            <h4>select控件示例</h4>
+            <div class="form-demo">
+              <div class="form-group">
+                <label for="city">选择城市：</label>
+                <select id="city" name="city">
+                  <option value="beijing">北京</option>
+                  <option value="shanghai">上海</option>
+                  <option value="guangzhou">广州</option>
+                  <option value="shenzhen">深圳</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用select控件</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个用户信息表单，包含以下下拉列表：</p>
+              <ul>
+                <li>省份选择（至少5个选项）</li>
+                <li>城市选择（至少5个选项）</li>
+                <li>教育程度选择（小学、初中、高中、大学、研究生）</li>
+                <li>每个下拉列表设置一个默认选中项</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>option标签的value属性和显示文本有什么区别？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 新增input控件类型 -->
+        <section id="new-input-types">
+          <h2>新增input控件类型</h2>
+          <p>HTML5新增了多种input控件类型，可以更好地验证用户输入。</p>
+
+          <h3>HTML5新增的input类型</h3>
+          <table class="property-table">
+            <thead>
+              <tr>
+                <th>类型</th>
+                <th>说明</th>
+                <th>示例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>email</code></td>
+                <td>电子邮件地址输入框</td>
+                <td><code>&lt;input type="email" name="email"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>url</code></td>
+                <td>URL地址输入框</td>
+                <td><code>&lt;input type="url" name="website"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>number</code></td>
+                <td>数字输入框</td>
+                <td><code>&lt;input type="number" name="age"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>range</code></td>
+                <td>范围滑块</td>
+                <td><code>&lt;input type="range" name="volume"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>date</code></td>
+                <td>日期选择器</td>
+                <td><code>&lt;input type="date" name="birthday"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>time</code></td>
+                <td>时间选择器</td>
+                <td>
+                  <code>&lt;input type="time" name="meeting-time"&gt;</code>
+                </td>
+              </tr>
+              <tr>
+                <td><code>color</code></td>
+                <td>颜色选择器</td>
+                <td><code>&lt;input type="color" name="favcolor"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>search</code></td>
+                <td>搜索框</td>
+                <td><code>&lt;input type="search" name="q"&gt;</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="note">
+            <p>
+              <strong>注意：</strong
+              >对于浏览器不支持的input控件输入类型，将会在网页中显示为一个普通输入框。
+            </p>
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用新增input类型</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个包含HTML5新增input类型的表单：</p>
+              <ul>
+                <li>电子邮件输入框</li>
+                <li>网址输入框</li>
+                <li>数字输入框（年龄）</li>
+                <li>日期选择器（生日）</li>
+                <li>颜色选择器（最喜欢的颜色）</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>HTML5新增的input类型相比传统input类型有什么优势？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 新增input控件属性 -->
+        <section id="new-input-attributes">
+          <h2>新增input控件属性</h2>
+          <p>HTML5新增了多种input控件属性，可以增强表单的功能和用户体验。</p>
+
+          <h3>HTML5新增的input属性</h3>
+          <table class="property-table">
+            <thead>
+              <tr>
+                <th>属性</th>
+                <th>说明</th>
+                <th>示例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>autofocus</code></td>
+                <td>页面加载时自动获得焦点</td>
+                <td><code>&lt;input type="text" autofocus&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>placeholder</code></td>
+                <td>输入框内的提示文本</td>
+                <td>
+                  <code
+                    >&lt;input type="text" placeholder="请输入姓名"&gt;</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>required</code></td>
+                <td>规定输入字段不能为空</td>
+                <td><code>&lt;input type="text" required&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>pattern</code></td>
+                <td>规定输入值的模式（正则表达式）</td>
+                <td>
+                  <code>&lt;input type="text" pattern="[A-Za-z]{3}"&gt;</code>
+                </td>
+              </tr>
+              <tr>
+                <td><code>min, max, step</code></td>
+                <td>规定输入值的最小值、最大值和步长</td>
+                <td>
+                  <code
+                    >&lt;input type="number" min="1" max="10" step="1"&gt;</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>multiple</code></td>
+                <td>允许输入多个值</td>
+                <td><code>&lt;input type="file" multiple&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>list</code></td>
+                <td>引用包含输入选项的datalist</td>
+                <td><code>&lt;input type="text" list="browsers"&gt;</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="exercise">
+            <h4>练习：使用新增input属性</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个用户注册表单，使用HTML5新增属性：</p>
+              <ul>
+                <li>用户名输入框自动获得焦点</li>
+                <li>所有必填字段使用required属性</li>
+                <li>邮箱输入框使用placeholder提示</li>
+                <li>年龄输入框限制范围18-100</li>
+                <li>密码输入框使用pattern属性要求至少8位</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>placeholder属性和value属性在使用上有什么区别？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CSS控制表单样式 -->
+        <section id="form-styling">
+          <h2>CSS控制表单样式</h2>
+          <p>使用CSS可以美化表单，提升用户体验。</p>
+
+          <h3>常用的表单样式属性</h3>
+          <ul>
+            <li><code>font-family, font-size, color</code> - 控制字体样式</li>
+            <li><code>border, border-radius</code> - 控制边框样式</li>
+            <li><code>background, background-color</code> - 控制背景样式</li>
+            <li><code>padding, margin</code> - 控制内边距和外边距</li>
+            <li><code>width, height</code> - 控制尺寸</li>
+            <li><code>:focus</code> - 控制获得焦点时的样式</li>
+          </ul>
+
+          <div class="code-example">
+            <code
+              >/* 美化输入框 */ input[type="text"], input[type="password"] {
+              width: 100%; padding: 10px; border: 1px solid #ddd; border-radius:
+              4px; font-size: 16px; } /* 输入框获得焦点时的样式 */
+              input[type="text"]:focus, input[type="password"]:focus {
+              border-color: #3498db; box-shadow: 0 0 5px rgba(52, 152, 219,
+              0.5); outline: none; } /* 美化按钮 */ input[type="submit"],
+              input[type="reset"] { background-color: #3498db; color: white;
+              border: none; padding: 10px 20px; border-radius: 4px; cursor:
+              pointer; } /* 按钮悬停效果 */ input[type="submit"]:hover,
+              input[type="reset"]:hover { background-color: #2980b9; }</code
+            >
+          </div>
+
+          <div class="exercise">
+            <h4>练习：使用CSS美化表单</h4>
+            <div class="exercise-box">
+              <p><strong>练习1：编码题</strong></p>
+              <p>创建一个美观的登录表单，要求：</p>
+              <ul>
+                <li>输入框有圆角边框和适当的内边距</li>
+                <li>输入框获得焦点时边框颜色变化</li>
+                <li>登录按钮有背景色和悬停效果</li>
+                <li>整体布局美观、协调</li>
+              </ul>
+
+              <p><strong>练习2：简答题</strong></p>
+              <p>为什么在美化表单时通常需要设置<code>outline: none;</code>？</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 综合练习 -->
+        <section id="comprehensive">
+          <h2>综合实战练习</h2>
+          <p>结合所学知识，创建一个"千年之恋"注册页面。</p>
+
+          <div class="exercise">
+            <div class="exercise-box">
+              <p><strong>练习：创建"千年之恋"注册页面</strong></p>
+              <p>创建一个完整的用户注册页面，包含以下元素：</p>
+              <ol>
+                <li>使用表格或div进行页面布局</li>
+                <li>
+                  包含以下表单字段：
+                  <ul>
+                    <li>用户名（必填）</li>
+                    <li>密码（必填，使用password类型）</li>
+                    <li>确认密码（必填，使用password类型）</li>
+                    <li>性别（单选按钮）</li>
+                    <li>出生日期（日期选择器）</li>
+                    <li>邮箱（必填，使用email类型）</li>
+                    <li>手机号码（使用tel类型）</li>
+                    <li>兴趣爱好（复选框，至少5个选项）</li>
+                    <li>个人简介（多行文本输入框）</li>
+                  </ul>
+                </li>
+                <li>
+                  使用HTML5新增属性增强表单功能：
+                  <ul>
+                    <li>必填字段使用required属性</li>
+                    <li>输入框使用placeholder属性提供提示</li>
+                    <li>用户名输入框自动获得焦点</li>
+                  </ul>
+                </li>
+                <li>
+                  使用CSS美化表单样式：
+                  <ul>
+                    <li>统一的输入框样式</li>
+                    <li>美观的按钮样式</li>
+                    <li>适当的间距和布局</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      // 平滑滚动
+      document.querySelectorAll(".nav-links a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+
+          // 使用scrollIntoView实现平滑滚动
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+
+          // 更新活动链接
+          document.querySelectorAll(".nav-links a").forEach((link) => {
+            link.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+
+      // 根据滚动位置更新活动链接
+      window.addEventListener("scroll", function () {
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.scrollY >= sectionTop - 100) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
