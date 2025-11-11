@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>前端项目合集首页</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        padding: 40px 20px;
+        color: white;
+      }
+
+      header h1 {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      header p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0.9;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 20px 0;
+      }
+
+      .project-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-header {
+        padding: 25px 20px;
+        color: white;
+        text-align: center;
+      }
+
+      .project03 .card-header {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+      }
+
+      .project04 .card-header {
+        background: linear-gradient(135deg, #2ecc71, #27ae60);
+      }
+
+      .project05 .card-header {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+      }
+
+      .project06 .card-header {
+        background: linear-gradient(135deg, #f39c12, #d35400);
+      }
+
+      .project07 .card-header {
+        background: linear-gradient(135deg, #9b59b6, #8e44ad);
+      }
+
+      .card-header h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+      }
+
+      .card-content {
+        padding: 25px;
+      }
+
+      .card-content p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: #3498db;
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        border: 2px solid #3498db;
+        text-align: center;
+        width: 100%;
+      }
+
+      .btn:hover {
+        background: transparent;
+        color: #3498db;
+        transform: scale(1.05);
+      }
+
+      .project03 .btn:hover {
+        color: #3498db;
+        border-color: #3498db;
+      }
+
+      .project04 .btn:hover {
+        color: #2ecc71;
+        border-color: #2ecc71;
+      }
+
+      .project05 .btn:hover {
+        color: #e74c3c;
+        border-color: #e74c3c;
+      }
+
+      .project06 .btn:hover {
+        color: #f39c12;
+        border-color: #f39c12;
+      }
+
+      .project07 .btn:hover {
+        color: #9b59b6;
+        border-color: #9b59b6;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 20px;
+        color: white;
+        margin-top: 20px;
+      }
+
+      footer p {
+        opacity: 0.8;
+      }
+
+      @media (max-width: 768px) {
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        header h1 {
+          font-size: 2.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>前端开发项目合集</h1>
+        <p>
+          欢迎来到前端开发学习项目合集，这里包含了从基础到进阶的多个实战项目
+        </p>
+      </header>
+
+      <div class="projects-grid">
+        <div class="project-card project03">
+          <div class="card-header">
+            <h2>Project 03</h2>
+            <p>CSS知识点完整参考手册</p>
+          </div>
+          <div class="card-content">
+            <p>
+              深入学习CSS核心知识点，包括选择器、盒模型、定位、浮动、背景、边框等，以及配套练习。
+            </p>
+            <a href="project03.html" class="btn">查看项目</a>
+          </div>
+        </div>
+
+        <div class="project-card project04">
+          <div class="card-header">
+            <h2>Project 04</h2>
+            <p>盒子模型与布局知识手册</p>
+          </div>
+          <div class="card-content">
+            <p>
+              深入理解CSS盒子模型，掌握各种布局技术，包括Flexbox和Grid布局，创建"爱家居"企业网站。
+            </p>
+            <a href="project04.html" class="btn">查看项目</a>
+          </div>
+        </div>
+
+        <div class="project-card project05">
+          <div class="card-header">
+            <h2>Project 05</h2>
+            <p>列表与超链接知识手册</p>
+          </div>
+          <div class="card-content">
+            <p>
+              学习HTML列表和超链接的使用，创建导航菜单和页面链接，制作"优课教育"网站。
+            </p>
+            <a href="project05.html" class="btn">查看项目</a>
+          </div>
+        </div>
+
+        <div class="project-card project06">
+          <div class="card-header">
+            <h2>Project 06</h2>
+            <p>表格与表单知识手册</p>
+          </div>
+          <div class="card-content">
+            <p>
+              掌握HTML表格和表单元素的使用，创建数据展示和用户输入界面，制作"千年之恋"注册页面。
+            </p>
+            <a href="project06.html" class="btn">查看项目</a>
+          </div>
+        </div>
+
+        <div class="project-card project07">
+          <div class="card-header">
+            <h2>Project 07</h2>
+            <p>视频与动画效果学习手册</p>
+          </div>
+          <div class="card-content">
+            <p>
+              学习HTML5视频元素和CSS3动画效果，为网页添加动态元素，提升用户体验。
+            </p>
+            <a href="project07.html" class="btn">查看项目</a>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; 2023 前端开发项目合集 | 包含project03到project07的所有内容</p>
+      </footer>
+    </div>
+  </body>
+</html>
