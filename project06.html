@@ -25,7 +25,7 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
         color: var(--text-color);
         background-color: #f5f7fa;
@@ -158,7 +158,7 @@
         border-radius: 4px;
         padding: 1rem;
         margin: 1rem 0;
-        font-family: "Courier New", monospace;
+        font-family: 'Courier New', monospace;
         overflow-x: auto;
       }
 
@@ -296,6 +296,36 @@
         padding: 1rem;
         margin: 1rem 0;
       }
+      /* 返回首页按钮样式 */
+      .back-to-home {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .back-to-home:hover {
+        background-color: var(--dark-color);
+        transform: translateY(-3px);
+      }
+
+      .back-to-home:active {
+        transform: translateY(0);
+      }
     </style>
   </head>
   <body>
@@ -392,16 +422,14 @@
               定义表格中的一行，嵌套在&lt;table&gt;&lt;/table&gt;中
             </li>
             <li>
-              <code>&lt;td&gt;&lt;/td&gt;</code> -
-              定义表格中的单元格，嵌套在&lt;tr&gt;&lt;/tr&gt;中
+              <code>&lt;td&gt;&lt;/td&gt;</code> - 定义表格中的单元格，嵌套在&lt;tr&gt;&lt;/tr&gt;中
             </li>
           </ul>
 
           <div class="code-example">
             <code
-              >&lt;table&gt; &lt;tr&gt; &lt;td&gt;单元格1&lt;/td&gt;
-              &lt;td&gt;单元格2&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
-              &lt;td&gt;单元格3&lt;/td&gt; &lt;td&gt;单元格4&lt;/td&gt;
+              >&lt;table&gt; &lt;tr&gt; &lt;td&gt;单元格1&lt;/td&gt; &lt;td&gt;单元格2&lt;/td&gt;
+              &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;单元格3&lt;/td&gt; &lt;td&gt;单元格4&lt;/td&gt;
               &lt;/tr&gt; &lt;/table&gt;</code
             >
           </div>
@@ -516,10 +544,7 @@
               </ul>
 
               <p><strong>练习2：简答题</strong></p>
-              <p>
-                <code>cellspacing</code
-                >和<code>cellpadding</code>属性有什么区别？
-              </p>
+              <p><code>cellspacing</code>和<code>cellpadding</code>属性有什么区别？</p>
             </div>
           </div>
         </section>
@@ -560,15 +585,9 @@
           <div class="note">
             <p><strong>注意：</strong></p>
             <ol>
-              <li>
-                &lt;tr&gt;标签无宽度属性width，其宽度取决于表格标签&lt;table&gt;。
-              </li>
-              <li>
-                可以对&lt;tr&gt;标签应用valign属性，来设置一行内容的垂直对齐方式。
-              </li>
-              <li>
-                不建议对&lt;tr&gt;标签应用background属性，以免出现兼容性问题。
-              </li>
+              <li>&lt;tr&gt;标签无宽度属性width，其宽度取决于表格标签&lt;table&gt;。</li>
+              <li>可以对&lt;tr&gt;标签应用valign属性，来设置一行内容的垂直对齐方式。</li>
+              <li>不建议对&lt;tr&gt;标签应用background属性，以免出现兼容性问题。</li>
             </ol>
           </div>
 
@@ -683,10 +702,9 @@
 
           <div class="code-example">
             <code
-              >&lt;table&gt; &lt;tr&gt; &lt;th&gt;姓名&lt;/th&gt;
-              &lt;th&gt;年龄&lt;/th&gt; &lt;th&gt;城市&lt;/th&gt; &lt;/tr&gt;
-              &lt;tr&gt; &lt;td&gt;张三&lt;/td&gt; &lt;td&gt;25&lt;/td&gt;
-              &lt;td&gt;北京&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</code
+              >&lt;table&gt; &lt;tr&gt; &lt;th&gt;姓名&lt;/th&gt; &lt;th&gt;年龄&lt;/th&gt;
+              &lt;th&gt;城市&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;张三&lt;/td&gt;
+              &lt;td&gt;25&lt;/td&gt; &lt;td&gt;北京&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</code
             >
           </div>
 
@@ -744,17 +762,13 @@
 
           <div class="code-example">
             <code
-              >/* 设置表格边框 */ table { width: 280px; height: 280px; border:
-              1px solid #F00; } /* 设置单元格边框 */ td, th { border: 1px solid
-              #F00; }</code
+              >/* 设置表格边框 */ table { width: 280px; height: 280px; border: 1px solid #F00; } /*
+              设置单元格边框 */ td, th { border: 1px solid #F00; }</code
             >
           </div>
 
           <div class="note">
-            <p>
-              <strong>注意：</strong
-              >在设置表格的边框时，也要给单元格设置相应的边框。
-            </p>
+            <p><strong>注意：</strong>在设置表格的边框时，也要给单元格设置相应的边框。</p>
           </div>
 
           <div class="exercise">
@@ -849,17 +863,12 @@
 
           <h3>表单的组成部分</h3>
           <ul>
-            <li>
-              <strong>表单域</strong> -
-              相当于一个容器，用来容纳所有的表单控件和提示信息
-            </li>
+            <li><strong>表单域</strong> - 相当于一个容器，用来容纳所有的表单控件和提示信息</li>
             <li>
               <strong>表单控件</strong> -
               包含了具体的表单功能项，如单行文本输入框、密码输入框、复选框、提交按钮、重置按钮等
             </li>
-            <li>
-              <strong>提示信息</strong> - 说明性文字，提示用户如何填写表单
-            </li>
+            <li><strong>提示信息</strong> - 说明性文字，提示用户如何填写表单</li>
           </ul>
 
           <div class="demo-box">
@@ -899,8 +908,8 @@
           <h3>form标签的基本语法</h3>
           <div class="code-example">
             <code
-              >&lt;form action="url地址" method="提交方式" name="表单名称"&gt;
-              各种表单控件 &lt;/form&gt;</code
+              >&lt;form action="url地址" method="提交方式" name="表单名称"&gt; 各种表单控件
+              &lt;/form&gt;</code
             >
           </div>
 
@@ -962,10 +971,7 @@
 
           <h3>input控件的基本语法</h3>
           <div class="code-example">
-            <code
-              >&lt;input type="控件类型" name="字段名称"
-              value="初始值"/&gt;</code
-            >
+            <code>&lt;input type="控件类型" name="字段名称" value="初始值"/&gt;</code>
           </div>
 
           <h3>常用的input控件类型</h3>
@@ -992,19 +998,14 @@
                 <td><code>radio</code></td>
                 <td>单选按钮</td>
                 <td>
-                  <code
-                    >&lt;input type="radio" name="gender" value="male"&gt;</code
-                  >
+                  <code>&lt;input type="radio" name="gender" value="male"&gt;</code>
                 </td>
               </tr>
               <tr>
                 <td><code>checkbox</code></td>
                 <td>复选框</td>
                 <td>
-                  <code
-                    >&lt;input type="checkbox" name="hobby"
-                    value="reading"&gt;</code
-                  >
+                  <code>&lt;input type="checkbox" name="hobby" value="reading"&gt;</code>
                 </td>
               </tr>
               <tr>
@@ -1031,9 +1032,7 @@
                 <td><code>hidden</code></td>
                 <td>隐藏字段</td>
                 <td>
-                  <code
-                    >&lt;input type="hidden" name="userid" value="123"&gt;</code
-                  >
+                  <code>&lt;input type="hidden" name="userid" value="123"&gt;</code>
                 </td>
               </tr>
             </tbody>
@@ -1043,26 +1042,20 @@
             <h4>input控件示例</h4>
             <div class="form-demo">
               <div class="form-group">
-                <label
-                  >文本输入：<input type="text" placeholder="请输入文本"
-                /></label>
+                <label>文本输入：<input type="text" placeholder="请输入文本" /></label>
+              </div>
+              <div class="form-group">
+                <label>密码输入：<input type="password" placeholder="请输入密码" /></label>
               </div>
               <div class="form-group">
                 <label
-                  >密码输入：<input type="password" placeholder="请输入密码"
-                /></label>
-              </div>
-              <div class="form-group">
-                <label
-                  >单选按钮：
-                  <input type="radio" name="demo-radio" value="1" /> 选项1
+                  >单选按钮： <input type="radio" name="demo-radio" value="1" /> 选项1
                   <input type="radio" name="demo-radio" value="2" /> 选项2
                 </label>
               </div>
               <div class="form-group">
                 <label
-                  >复选框：
-                  <input type="checkbox" name="demo-checkbox" value="A" /> 选项A
+                  >复选框： <input type="checkbox" name="demo-checkbox" value="A" /> 选项A
                   <input type="checkbox" name="demo-checkbox" value="B" /> 选项B
                 </label>
               </div>
@@ -1087,9 +1080,7 @@
               </ul>
 
               <p><strong>练习2：简答题</strong></p>
-              <p>
-                单选按钮和复选框在使用上有什么区别？如何确保同一组的单选按钮只能选择一个？
-              </p>
+              <p>单选按钮和复选框在使用上有什么区别？如何确保同一组的单选按钮只能选择一个？</p>
             </div>
           </div>
         </section>
@@ -1102,8 +1093,8 @@
           <h3>textarea控件的基本语法</h3>
           <div class="code-example">
             <code
-              >&lt;textarea cols="每行中的字符数" rows="显示的行数"
-              name="字段名称"&gt; 文本内容 &lt;/textarea&gt;</code
+              >&lt;textarea cols="每行中的字符数" rows="显示的行数" name="字段名称"&gt; 文本内容
+              &lt;/textarea&gt;</code
             >
           </div>
 
@@ -1145,16 +1136,13 @@
         <!-- select控件 -->
         <section id="select-control">
           <h2>select控件</h2>
-          <p>
-            select控件用于创建下拉列表，用户可以从预定义的选项中选择一个或多个。
-          </p>
+          <p>select控件用于创建下拉列表，用户可以从预定义的选项中选择一个或多个。</p>
 
           <h3>select控件的基本语法</h3>
           <div class="code-example">
             <code
-              >&lt;select name="字段名称"&gt; &lt;option
-              value="值1"&gt;选项1&lt;/option&gt; &lt;option
-              value="值2"&gt;选项2&lt;/option&gt; &lt;option
+              >&lt;select name="字段名称"&gt; &lt;option value="值1"&gt;选项1&lt;/option&gt;
+              &lt;option value="值2"&gt;选项2&lt;/option&gt; &lt;option
               value="值3"&gt;选项3&lt;/option&gt; &lt;/select&gt;</code
             >
           </div>
@@ -1341,9 +1329,7 @@
                 <td><code>placeholder</code></td>
                 <td>输入框内的提示文本</td>
                 <td>
-                  <code
-                    >&lt;input type="text" placeholder="请输入姓名"&gt;</code
-                  >
+                  <code>&lt;input type="text" placeholder="请输入姓名"&gt;</code>
                 </td>
               </tr>
               <tr>
@@ -1362,9 +1348,7 @@
                 <td><code>min, max, step</code></td>
                 <td>规定输入值的最小值、最大值和步长</td>
                 <td>
-                  <code
-                    >&lt;input type="number" min="1" max="10" step="1"&gt;</code
-                  >
+                  <code>&lt;input type="number" min="1" max="10" step="1"&gt;</code>
                 </td>
               </tr>
               <tr>
@@ -1416,16 +1400,14 @@
 
           <div class="code-example">
             <code
-              >/* 美化输入框 */ input[type="text"], input[type="password"] {
-              width: 100%; padding: 10px; border: 1px solid #ddd; border-radius:
-              4px; font-size: 16px; } /* 输入框获得焦点时的样式 */
-              input[type="text"]:focus, input[type="password"]:focus {
-              border-color: #3498db; box-shadow: 0 0 5px rgba(52, 152, 219,
-              0.5); outline: none; } /* 美化按钮 */ input[type="submit"],
-              input[type="reset"] { background-color: #3498db; color: white;
-              border: none; padding: 10px 20px; border-radius: 4px; cursor:
-              pointer; } /* 按钮悬停效果 */ input[type="submit"]:hover,
-              input[type="reset"]:hover { background-color: #2980b9; }</code
+              >/* 美化输入框 */ input[type="text"], input[type="password"] { width: 100%; padding:
+              10px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; } /*
+              输入框获得焦点时的样式 */ input[type="text"]:focus, input[type="password"]:focus {
+              border-color: #3498db; box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); outline: none; }
+              /* 美化按钮 */ input[type="submit"], input[type="reset"] { background-color: #3498db;
+              color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+              /* 按钮悬停效果 */ input[type="submit"]:hover, input[type="reset"]:hover {
+              background-color: #2980b9; }</code
             >
           </div>
 
@@ -1493,52 +1475,54 @@
           </div>
         </section>
       </main>
+      <!-- 返回首页按钮 -->
+      <a href="index.html" class="back-to-home" title="返回首页">🏠</a>
     </div>
 
     <script>
       // 平滑滚动
-      document.querySelectorAll(".nav-links a").forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
+      document.querySelectorAll('.nav-links a').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault()
 
-          const targetId = this.getAttribute("href");
-          const targetElement = document.querySelector(targetId);
+          const targetId = this.getAttribute('href')
+          const targetElement = document.querySelector(targetId)
 
           // 使用scrollIntoView实现平滑滚动
           targetElement.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
+            behavior: 'smooth',
+            block: 'start'
+          })
 
           // 更新活动链接
-          document.querySelectorAll(".nav-links a").forEach((link) => {
-            link.classList.remove("active");
-          });
-          this.classList.add("active");
-        });
-      });
+          document.querySelectorAll('.nav-links a').forEach((link) => {
+            link.classList.remove('active')
+          })
+          this.classList.add('active')
+        })
+      })
 
       // 根据滚动位置更新活动链接
-      window.addEventListener("scroll", function () {
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll(".nav-links a");
+      window.addEventListener('scroll', function () {
+        const sections = document.querySelectorAll('section')
+        const navLinks = document.querySelectorAll('.nav-links a')
 
-        let current = "";
+        let current = ''
         sections.forEach((section) => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
+          const sectionTop = section.offsetTop
+          const sectionHeight = section.clientHeight
           if (window.scrollY >= sectionTop - 100) {
-            current = section.getAttribute("id");
+            current = section.getAttribute('id')
           }
-        });
+        })
 
         navLinks.forEach((link) => {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === `#${current}`) {
-            link.classList.add("active");
+          link.classList.remove('active')
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active')
           }
-        });
-      });
+        })
+      })
     </script>
   </body>
 </html>

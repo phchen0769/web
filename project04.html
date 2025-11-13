@@ -25,7 +25,7 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
         color: var(--text-color);
         background-color: #f5f7fa;
@@ -158,7 +158,7 @@
         border-radius: 4px;
         padding: 1rem;
         margin: 1rem 0;
-        font-family: "Courier New", monospace;
+        font-family: 'Courier New', monospace;
         overflow-x: auto;
       }
 
@@ -207,7 +207,7 @@
       }
 
       .box-model-demo::before {
-        content: "内容区域";
+        content: '内容区域';
         display: flex;
         align-items: center;
         justify-content: center;
@@ -359,7 +359,7 @@
 
       .fixed-box {
         position: fixed;
-        bottom: 20px;
+        top: 20px;
         right: 20px;
         background-color: #9b59b6;
         z-index: 1000;
@@ -480,6 +480,37 @@
         padding: 1rem;
         margin: 1rem 0;
       }
+
+      /* 返回首页按钮样式 */
+      .back-to-home {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .back-to-home:hover {
+        background-color: var(--dark-color);
+        transform: translateY(-3px);
+      }
+
+      .back-to-home:active {
+        transform: translateY(0);
+      }
     </style>
   </head>
   <body>
@@ -488,7 +519,7 @@
       <aside class="sidebar">
         <div class="sidebar-header">
           <h1>盒子模型与布局</h1>
-          <p>"爱家居"企业网站制作</p>
+          <p>"爱家居"企业网站首页制作</p>
         </div>
 
         <div class="nav-section">
@@ -565,14 +596,10 @@
 
           <h3>盒子模型的构成</h3>
           <ul>
-            <li>
-              <strong>内容(content)</strong> - 盒子的实际内容，显示文本和图像
-            </li>
+            <li><strong>内容(content)</strong> - 盒子的实际内容，显示文本和图像</li>
             <li><strong>内边距(padding)</strong> - 内容与边框之间的空白区域</li>
             <li><strong>边框(border)</strong> - 围绕内容和内边距的边界</li>
-            <li>
-              <strong>外边距(margin)</strong> - 盒子与其他元素之间的空白区域
-            </li>
+            <li><strong>外边距(margin)</strong> - 盒子与其他元素之间的空白区域</li>
           </ul>
 
           <div class="demo-box">
@@ -585,9 +612,7 @@
                 <span class="box-model-label border-label">边框(border)</span>
               </div>
               <div class="padding">
-                <span class="box-model-label padding-label"
-                  >内边距(padding)</span
-                >
+                <span class="box-model-label padding-label">内边距(padding)</span>
               </div>
               <span class="box-model-label content-label">内容(content)</span>
             </div>
@@ -610,8 +635,8 @@
               <p>一个元素的CSS样式如下：</p>
               <div class="code-example">
                 <code
-                  >.box { width: 200px; height: 100px; padding: 20px; border:
-                  5px solid black; margin: 10px; }</code
+                  >.box { width: 200px; height: 100px; padding: 20px; border: 5px solid black;
+                  margin: 10px; }</code
                 >
               </div>
               <p>请计算这个元素在页面中占据的总宽度和总高度。</p>
@@ -635,19 +660,11 @@
           </ul>
 
           <div class="demo-box">
-            <div
-              style="border: 2px solid #3498db; padding: 10px; margin: 10px 0"
-            >
-              实线边框示例
-            </div>
-            <div
-              style="border: 2px dashed #e74c3c; padding: 10px; margin: 10px 0"
-            >
+            <div style="border: 2px solid #3498db; padding: 10px; margin: 10px 0">实线边框示例</div>
+            <div style="border: 2px dashed #e74c3c; padding: 10px; margin: 10px 0">
               虚线边框示例
             </div>
-            <div
-              style="border: 2px dotted #2ecc71; padding: 10px; margin: 10px 0"
-            >
+            <div style="border: 2px dotted #2ecc71; padding: 10px; margin: 10px 0">
               点线边框示例
             </div>
           </div>
@@ -660,9 +677,9 @@
 
           <div class="code-example">
             <code
-              >/* 单独设置各边边框 */ border-top: 2px solid red; border-right:
-              1px dashed blue; border-bottom: 3px dotted green; border-left: 1px
-              double purple; /* 简写形式 */ border: 2px solid #000;</code
+              >/* 单独设置各边边框 */ border-top: 2px solid red; border-right: 1px dashed blue;
+              border-bottom: 3px dotted green; border-left: 1px double purple; /* 简写形式 */
+              border: 2px solid #000;</code
             >
           </div>
 
@@ -695,8 +712,7 @@
 
               <p><strong>练习2：简答题</strong></p>
               <p>
-                使用<code>border-color: transparent;</code>和<code
-                  >border: none;</code
+                使用<code>border-color: transparent;</code>和<code>border: none;</code
                 >设置边框不可见有什么区别？
               </p>
             </div>
@@ -711,40 +727,25 @@
           <h3>内边距的设置方式</h3>
           <ul>
             <li><code>padding: 10px;</code> - 四个方向内边距均为10px</li>
+            <li><code>padding: 10px 20px;</code> - 上下内边距10px，左右内边距20px</li>
             <li>
-              <code>padding: 10px 20px;</code> - 上下内边距10px，左右内边距20px
+              <code>padding: 10px 20px 15px;</code> - 上内边距10px，左右内边距20px，下内边距15px
             </li>
-            <li>
-              <code>padding: 10px 20px 15px;</code> -
-              上内边距10px，左右内边距20px，下内边距15px
-            </li>
-            <li>
-              <code>padding: 10px 20px 15px 5px;</code> -
-              上10px，右20px，下15px，左5px
-            </li>
+            <li><code>padding: 10px 20px 15px 5px;</code> - 上10px，右20px，下15px，左5px</li>
           </ul>
 
           <div class="code-example">
             <code
-              >/* 单独设置各边内边距 */ padding-top: 10px; padding-right: 15px;
-              padding-bottom: 20px; padding-left: 5px; /* 简写形式 */ padding:
-              10px 15px 20px 5px;</code
+              >/* 单独设置各边内边距 */ padding-top: 10px; padding-right: 15px; padding-bottom:
+              20px; padding-left: 5px; /* 简写形式 */ padding: 10px 15px 20px 5px;</code
             >
           </div>
 
           <div class="demo-box">
-            <div
-              style="border: 1px solid #3498db; padding: 20px; margin: 10px 0"
-            >
+            <div style="border: 1px solid #3498db; padding: 20px; margin: 10px 0">
               这个元素有20px的内边距
             </div>
-            <div
-              style="
-                border: 1px solid #e74c3c;
-                padding: 10px 30px;
-                margin: 10px 0;
-              "
-            >
+            <div style="border: 1px solid #e74c3c; padding: 10px 30px; margin: 10px 0">
               这个元素有10px上下内边距和30px左右内边距
             </div>
           </div>
@@ -784,41 +785,26 @@
           <h3>外边距的设置方式</h3>
           <ul>
             <li><code>margin: 10px;</code> - 四个方向外边距均为10px</li>
+            <li><code>margin: 10px 20px;</code> - 上下外边距10px，左右外边距20px</li>
             <li>
-              <code>margin: 10px 20px;</code> - 上下外边距10px，左右外边距20px
+              <code>margin: 10px 20px 15px;</code> - 上外边距10px，左右外边距20px，下外边距15px
             </li>
-            <li>
-              <code>margin: 10px 20px 15px;</code> -
-              上外边距10px，左右外边距20px，下外边距15px
-            </li>
-            <li>
-              <code>margin: 10px 20px 15px 5px;</code> -
-              上10px，右20px，下15px，左5px
-            </li>
+            <li><code>margin: 10px 20px 15px 5px;</code> - 上10px，右20px，下15px，左5px</li>
           </ul>
 
           <div class="code-example">
             <code
-              >/* 单独设置各边外边距 */ margin-top: 10px; margin-right: 15px;
-              margin-bottom: 20px; margin-left: 5px; /* 简写形式 */ margin: 10px
-              15px 20px 5px; /* 水平居中 */ margin: 0 auto;</code
+              >/* 单独设置各边外边距 */ margin-top: 10px; margin-right: 15px; margin-bottom: 20px;
+              margin-left: 5px; /* 简写形式 */ margin: 10px 15px 20px 5px; /* 水平居中 */ margin: 0
+              auto;</code
             >
           </div>
 
           <div class="demo-box">
-            <div
-              style="border: 1px solid #3498db; padding: 10px; margin: 20px 0"
-            >
+            <div style="border: 1px solid #3498db; padding: 10px; margin: 20px 0">
               这个元素有20px的上下外边距
             </div>
-            <div
-              style="
-                border: 1px solid #e74c3c;
-                padding: 10px;
-                margin: 0 auto;
-                width: 200px;
-              "
-            >
+            <div style="border: 1px solid #e74c3c; padding: 10px; margin: 0 auto; width: 200px">
               这个元素使用自动外边距水平居中
             </div>
           </div>
@@ -859,18 +845,15 @@
 
           <div class="code-example">
             <code
-              >/* 单独设置各背景属性 */ background-color: #f0f0f0;
-              background-image: url("images/bg.jpg"); background-repeat:
-              no-repeat; background-position: center top; background-attachment:
-              fixed; background-size: cover; /* 简写形式 */ background: #f0f0f0
-              url("images/bg.jpg") no-repeat center top fixed;</code
+              >/* 单独设置各背景属性 */ background-color: #f0f0f0; background-image:
+              url("images/bg.jpg"); background-repeat: no-repeat; background-position: center top;
+              background-attachment: fixed; background-size: cover; /* 简写形式 */ background:
+              #f0f0f0 url("images/bg.jpg") no-repeat center top fixed;</code
             >
           </div>
 
           <div class="demo-box">
-            <div
-              style="background-color: #ecf0f1; padding: 20px; margin: 10px 0"
-            >
+            <div style="background-color: #ecf0f1; padding: 20px; margin: 10px 0">
               这个元素有背景颜色
             </div>
             <div
@@ -928,10 +911,9 @@
 
           <div class="code-example">
             <code
-              >/* 设置固定尺寸 */ width: 300px; height: 200px; /* 设置相对尺寸
-              */ width: 50%; height: 80%; /* 设置最大最小尺寸 */ min-width:
-              200px; max-width: 800px; min-height: 100px; max-height:
-              500px;</code
+              >/* 设置固定尺寸 */ width: 300px; height: 200px; /* 设置相对尺寸 */ width: 50%;
+              height: 80%; /* 设置最大最小尺寸 */ min-width: 200px; max-width: 800px; min-height:
+              100px; max-height: 500px;</code
             >
           </div>
 
@@ -963,14 +945,8 @@
           </div>
 
           <h3>盒子尺寸计算</h3>
-          <p>
-            盒子的总宽度 = width + 左右内边距之和 + 左右边框宽度之和 +
-            左右外边距之和
-          </p>
-          <p>
-            盒子的总高度 = height + 上下内边距之和 + 上下边框宽度之和 +
-            上下外边距之和
-          </p>
+          <p>盒子的总宽度 = width + 左右内边距之和 + 左右边框宽度之和 + 左右外边距之和</p>
+          <p>盒子的总高度 = height + 上下内边距之和 + 上下边框宽度之和 + 上下外边距之和</p>
 
           <div class="note">
             <p>
@@ -987,16 +963,14 @@
               <p>一个元素的CSS样式如下：</p>
               <div class="code-example">
                 <code
-                  >.element { width: 250px; height: 150px; padding: 20px;
-                  border: 5px solid #333; margin: 15px; }</code
+                  >.element { width: 250px; height: 150px; padding: 20px; border: 5px solid #333;
+                  margin: 15px; }</code
                 >
               </div>
               <p>请计算这个元素在页面中占据的总宽度和总高度。</p>
 
               <p><strong>练习2：编码题</strong></p>
-              <p>
-                创建一个响应式容器类<code>.responsive-container</code>，要求：
-              </p>
+              <p>创建一个响应式容器类<code>.responsive-container</code>，要求：</p>
               <ul>
                 <li>最小宽度为300px</li>
                 <li>最大宽度为1200px</li>
@@ -1014,26 +988,21 @@
           <p>透明属性用于设置元素的透明度效果。</p>
 
           <h3>rgba模式</h3>
-          <p>
-            rgba模式是在红、绿、蓝三原色的基础上添加了透明度参数，它是rgb模式的延伸。
-          </p>
+          <p>rgba模式是在红、绿、蓝三原色的基础上添加了透明度参数，它是rgb模式的延伸。</p>
           <div class="code-example">
             <code
-              >/* 语法格式 */ rgba(red, green, blue, alpha) /* 示例 */
-              background-color: rgba(255, 0, 0, 0.5); /* 半透明红色背景 */
-              color: rgba(0, 0, 0, 0.8); /* 80%不透明黑色文字 */</code
+              >/* 语法格式 */ rgba(red, green, blue, alpha) /* 示例 */ background-color: rgba(255,
+              0, 0, 0.5); /* 半透明红色背景 */ color: rgba(0, 0, 0, 0.8); /* 80%不透明黑色文字
+              */</code
             >
           </div>
 
           <h3>opacity属性</h3>
-          <p>
-            opacity属性能够使任何元素呈现出透明效果，作用范围要比rgba模式大得多。
-          </p>
+          <p>opacity属性能够使任何元素呈现出透明效果，作用范围要比rgba模式大得多。</p>
           <div class="code-example">
             <code
-              >/* 语法格式 */ opacity: value; /* 示例 */ opacity: 0.5; /*
-              50%透明度 */ opacity: 0; /* 完全透明 */ opacity: 1; /* 完全不透明
-              */</code
+              >/* 语法格式 */ opacity: value; /* 示例 */ opacity: 0.5; /* 50%透明度 */ opacity: 0;
+              /* 完全透明 */ opacity: 1; /* 完全不透明 */</code
             >
           </div>
 
@@ -1073,10 +1042,7 @@
               </ul>
 
               <p><strong>练习2：简答题</strong></p>
-              <p>
-                <code>rgba()</code
-                >和<code>opacity</code>在设置透明度时有什么区别？
-              </p>
+              <p><code>rgba()</code>和<code>opacity</code>在设置透明度时有什么区别？</p>
             </div>
           </div>
         </section>
@@ -1088,12 +1054,10 @@
 
           <div class="code-example">
             <code
-              >/* 设置四个角相同的圆角 */ border-radius: 10px; /*
-              分别设置四个角的圆角 */ border-radius: 10px 20px 30px 40px; /*
-              设置椭圆角 */ border-radius: 50%; /* 单独设置各角 */
-              border-top-left-radius: 10px; border-top-right-radius: 20px;
-              border-bottom-right-radius: 30px; border-bottom-left-radius:
-              40px;</code
+              >/* 设置四个角相同的圆角 */ border-radius: 10px; /* 分别设置四个角的圆角 */
+              border-radius: 10px 20px 30px 40px; /* 设置椭圆角 */ border-radius: 50%; /*
+              单独设置各角 */ border-top-left-radius: 10px; border-top-right-radius: 20px;
+              border-bottom-right-radius: 30px; border-bottom-left-radius: 40px;</code
             >
           </div>
           <div class="demo-box">
@@ -1167,10 +1131,9 @@
 
           <div class="code-example">
             <code
-              >/* 语法格式 */ box-shadow: h-shadow v-shadow blur spread color
-              inset; /* 示例 */ box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3); /*
-              外部阴影 */ box-shadow: inset 0 0 10px rgba(0,0,0,0.5); /*
-              内部阴影 */ box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 6px 20px
+              >/* 语法格式 */ box-shadow: h-shadow v-shadow blur spread color inset; /* 示例 */
+              box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3); /* 外部阴影 */ box-shadow: inset 0 0 10px
+              rgba(0,0,0,0.5); /* 内部阴影 */ box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 6px 20px
               rgba(0,0,0,0.1); /* 多重阴影 */</code
             >
           </div>
@@ -1235,9 +1198,7 @@
               </ul>
 
               <p><strong>练习2：编码题</strong></p>
-              <p>
-                创建一个按下状态的按钮类<code>.button-pressed</code>，要求：
-              </p>
+              <p>创建一个按下状态的按钮类<code>.button-pressed</code>，要求：</p>
               <ul>
                 <li>有内部阴影效果</li>
                 <li>模拟按钮被按下的视觉效果</li>
@@ -1254,22 +1215,20 @@
           <h3>线性渐变 (linear-gradient)</h3>
           <div class="code-example">
             <code
-              >/* 语法格式 */ background: linear-gradient(direction,
-              color-stop1, color-stop2, ...); /* 示例 */ background:
-              linear-gradient(to right, red, yellow); /* 从左到右的红黄渐变 */
-              background: linear-gradient(45deg, red, orange, yellow); /*
-              45度角的多色渐变 */ background: linear-gradient(to bottom,
-              rgba(255,0,0,0), rgba(255,0,0,1)); /* 透明到红色的渐变 */</code
+              >/* 语法格式 */ background: linear-gradient(direction, color-stop1, color-stop2, ...);
+              /* 示例 */ background: linear-gradient(to right, red, yellow); /* 从左到右的红黄渐变
+              */ background: linear-gradient(45deg, red, orange, yellow); /* 45度角的多色渐变 */
+              background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,0,0,1)); /*
+              透明到红色的渐变 */</code
             >
           </div>
 
           <h3>径向渐变 (radial-gradient)</h3>
           <div class="code-example">
             <code
-              >/* 语法格式 */ background: radial-gradient(shape size at
-              position, start-color, ..., last-color); /* 示例 */ background:
-              radial-gradient(circle, red, yellow, green); /* 圆形径向渐变 */
-              background: radial-gradient(ellipse at center, red 0%, yellow 50%,
+              >/* 语法格式 */ background: radial-gradient(shape size at position, start-color, ...,
+              last-color); /* 示例 */ background: radial-gradient(circle, red, yellow, green); /*
+              圆形径向渐变 */ background: radial-gradient(ellipse at center, red 0%, yellow 50%,
               green 100%); /* 椭圆形径向渐变 */</code
             >
           </div>
@@ -1348,10 +1307,7 @@
 
           <h3>行内元素 (Inline Elements)</h3>
           <ul>
-            <li>
-              <strong>特点</strong
-              >：不会独自占据一行。不可以设置宽度、高度、对齐等属性。
-            </li>
+            <li><strong>特点</strong>：不会独自占据一行。不可以设置宽度、高度、对齐等属性。</li>
             <li><strong>作用</strong>：用于控制页面中文本的样式。</li>
             <li>
               <strong>常见行内元素</strong
@@ -1361,8 +1317,7 @@
 
           <div class="note">
             <p>
-              <strong>注意：</strong>在行内元素中有几个特殊的标签。例如，<code
-                >&lt;img /&gt;</code
+              <strong>注意：</strong>在行内元素中有几个特殊的标签。例如，<code>&lt;img /&gt;</code
               >标签和<code>&lt;input /&gt;</code
               >标签。这些特殊的行内元素可以设置宽度、高度和对齐属性，因此它们也被称为行内块元素。
             </p>
@@ -1395,10 +1350,7 @@
         <!-- span标签 -->
         <section id="span-tag">
           <h2>span标签</h2>
-          <p>
-            <code>&lt;span&gt;</code
-            >标签是一个行内元素，用于对文档中的行内元素进行组合。
-          </p>
+          <p><code>&lt;span&gt;</code>标签是一个行内元素，用于对文档中的行内元素进行组合。</p>
 
           <h3>span标签的特点</h3>
           <ul>
@@ -1411,15 +1363,13 @@
           <div class="code-example">
             <code
               >&lt;p&gt;这是一段包含&lt;span
-              class="highlight"&gt;高亮文本&lt;/span&gt;的段落。&lt;/p&gt;
-              &lt;style&gt; .highlight { background-color: yellow; font-weight:
-              bold; } &lt;/style&gt;</code
+              class="highlight"&gt;高亮文本&lt;/span&gt;的段落。&lt;/p&gt; &lt;style&gt; .highlight
+              { background-color: yellow; font-weight: bold; } &lt;/style&gt;</code
             >
           </div>
           <div class="demo-box">
             <p>
-              这是一段文本，其中<span style="color: red; font-weight: bold"
-                >这部分是红色的</span
+              这是一段文本，其中<span style="color: red; font-weight: bold">这部分是红色的</span
               >，而其他部分保持原样。
             </p>
           </div>
@@ -1437,10 +1387,7 @@
               </ul>
 
               <p><strong>练习2：简答题</strong></p>
-              <p>
-                <code>&lt;span&gt;</code
-                >和<code>&lt;div&gt;</code>标签的主要区别是什么？
-              </p>
+              <p><code>&lt;span&gt;</code>和<code>&lt;div&gt;</code>标签的主要区别是什么？</p>
             </div>
           </div>
         </section>
@@ -1448,67 +1395,40 @@
         <!-- 元素的转换 -->
         <section id="element-conversion">
           <h2>元素的转换</h2>
-          <p>
-            元素的转换是指通过CSS改变元素的显示类型，实现块元素和行内元素之间的转换。
-          </p>
+          <p>元素的转换是指通过CSS改变元素的显示类型，实现块元素和行内元素之间的转换。</p>
 
           <h3>display属性</h3>
           <p>display属性用于定义元素应该生成的框的类型。</p>
 
           <div class="code-example">
             <code
-              >/* 将元素显示为块级元素 */ display: block; /*
-              将元素显示为行内元素 */ display: inline; /* 将元素显示为行内块元素
-              */ display: inline-block; /* 隐藏元素，不占据空间 */ display:
-              none;</code
+              >/* 将元素显示为块级元素 */ display: block; /* 将元素显示为行内元素 */ display:
+              inline; /* 将元素显示为行内块元素 */ display: inline-block; /* 隐藏元素，不占据空间 */
+              display: none;</code
             >
           </div>
           <div class="demo-box">
             <p>原始行内元素：</p>
-            <span style="border: 1px solid #3498db; padding: 5px"
-              >行内元素1</span
-            >
-            <span style="border: 1px solid #3498db; padding: 5px"
-              >行内元素2</span
-            >
+            <span style="border: 1px solid #3498db; padding: 5px">行内元素1</span>
+            <span style="border: 1px solid #3498db; padding: 5px">行内元素2</span>
 
             <p>转换为块级元素后：</p>
-            <span
-              style="
-                display: block;
-                border: 1px solid #e74c3c;
-                padding: 5px;
-                margin: 5px 0;
-              "
+            <span style="display: block; border: 1px solid #e74c3c; padding: 5px; margin: 5px 0"
               >行内元素转换为块级元素1</span
             >
-            <span
-              style="
-                display: block;
-                border: 1px solid #e74c3c;
-                padding: 5px;
-                margin: 5px 0;
-              "
+            <span style="display: block; border: 1px solid #e74c3c; padding: 5px; margin: 5px 0"
               >行内元素转换为块级元素2</span
             >
 
             <p>原始块级元素：</p>
-            <div style="border: 1px solid #3498db; padding: 5px; margin: 5px 0">
-              块级元素1
-            </div>
-            <div style="border: 1px solid #3498db; padding: 5px; margin: 5px 0">
-              块级元素2
-            </div>
+            <div style="border: 1px solid #3498db; padding: 5px; margin: 5px 0">块级元素1</div>
+            <div style="border: 1px solid #3498db; padding: 5px; margin: 5px 0">块级元素2</div>
 
             <p>转换为行内元素后：</p>
-            <div
-              style="display: inline; border: 1px solid #e74c3c; padding: 5px"
-            >
+            <div style="display: inline; border: 1px solid #e74c3c; padding: 5px">
               块级元素转换为行内元素1
             </div>
-            <div
-              style="display: inline; border: 1px solid #e74c3c; padding: 5px"
-            >
+            <div style="display: inline; border: 1px solid #e74c3c; padding: 5px">
               块级元素转换为行内元素2
             </div>
           </div>
@@ -1519,18 +1439,14 @@
               <p><strong>练习1：编码题</strong></p>
               <p>创建一个水平导航菜单，要求：</p>
               <ul>
-                <li>
-                  使用<code>&lt;ul&gt;</code>和<code>&lt;li&gt;</code>结构
-                </li>
+                <li>使用<code>&lt;ul&gt;</code>和<code>&lt;li&gt;</code>结构</li>
                 <li>将列表项转换为行内块元素</li>
                 <li>菜单项水平排列</li>
                 <li>菜单项之间有适当的间距</li>
               </ul>
 
               <p><strong>练习2：思考题</strong></p>
-              <p>
-                什么时候需要将行内元素转换为块级元素？什么时候需要将块级元素转换为行内元素？
-              </p>
+              <p>什么时候需要将行内元素转换为块级元素？什么时候需要将块级元素转换为行内元素？</p>
             </div>
           </div>
         </section>
@@ -1538,9 +1454,7 @@
         <!-- 垂直外边距合并 -->
         <section id="vertical-margin">
           <h2>垂直外边距合并</h2>
-          <p>
-            垂直外边距合并是指当两个垂直相邻的块级元素相遇时，它们的外边距会合并为一个外边距。
-          </p>
+          <p>垂直外边距合并是指当两个垂直相邻的块级元素相遇时，它们的外边距会合并为一个外边距。</p>
 
           <h3>相邻块元素垂直外边距合并</h3>
           <p>
@@ -1548,9 +1462,7 @@
           </p>
 
           <h3>嵌套块元素垂直外边距合并</h3>
-          <p>
-            当一个块级元素包含在另一个块级元素中时，它们的上外边距和/或下外边距也会发生合并。
-          </p>
+          <p>当一个块级元素包含在另一个块级元素中时，它们的上外边距和/或下外边距也会发生合并。</p>
 
           <div class="exercise">
             <h4>练习：理解外边距合并</h4>
@@ -1569,15 +1481,13 @@
         <!-- 元素的浮动 -->
         <section id="float">
           <h2>元素的浮动</h2>
-          <p>
-            浮动属性用于创建浮动框，使其移动到容器的左边或右边，允许文本和内联元素环绕它。
-          </p>
+          <p>浮动属性用于创建浮动框，使其移动到容器的左边或右边，允许文本和内联元素环绕它。</p>
 
           <h3>浮动属性</h3>
           <div class="code-example">
             <code
-              >/* 元素向左浮动 */ float: left; /* 元素向右浮动 */ float: right;
-              /* 元素不浮动（默认值） */ float: none;</code
+              >/* 元素向左浮动 */ float: left; /* 元素向右浮动 */ float: right; /*
+              元素不浮动（默认值） */ float: none;</code
             >
           </div>
 
@@ -1624,36 +1534,25 @@
           <h3>清除浮动的方法</h3>
 
           <h4>1. 使用空标签清除浮动</h4>
-          <p>
-            在浮动元素之后添加空标签，并对该空标签应用<code>clear:both;</code>样式。
-          </p>
+          <p>在浮动元素之后添加空标签，并对该空标签应用<code>clear:both;</code>样式。</p>
           <div class="code-example">
             <code
               >&lt;div class="float-left"&gt;左浮动元素&lt;/div&gt; &lt;div
-              class="float-right"&gt;右浮动元素&lt;/div&gt; &lt;div
-              style="clear: both;"&gt;&lt;/div&gt;</code
+              class="float-right"&gt;右浮动元素&lt;/div&gt; &lt;div style="clear:
+              both;"&gt;&lt;/div&gt;</code
             >
           </div>
 
           <h4>2. 使用overflow属性清除浮动</h4>
-          <p>
-            为浮动元素的父元素添加<code>overflow:hidden;</code>或<code>overflow:auto;</code>。
-          </p>
+          <p>为浮动元素的父元素添加<code>overflow:hidden;</code>或<code>overflow:auto;</code>。</p>
           <div class="code-example">
-            <code
-              >.container { overflow: hidden; /* 或 overflow: auto; */ }</code
-            >
+            <code>.container { overflow: hidden; /* 或 overflow: auto; */ }</code>
           </div>
 
           <h4>3. 使用after伪类清除浮动</h4>
-          <p>
-            利用伪类<code>:after</code>在元素内部增加一个类似于空标签的效果。
-          </p>
+          <p>利用伪类<code>:after</code>在元素内部增加一个类似于空标签的效果。</p>
           <div class="code-example">
-            <code
-              >.clearfix:after { content: ""; display: table; clear: both;
-              }</code
-            >
+            <code>.clearfix:after { content: ""; display: table; clear: both; }</code>
           </div>
 
           <div class="note">
@@ -1675,9 +1574,7 @@
               </ul>
 
               <p><strong>练习2：简答题</strong></p>
-              <p>
-                使用空标签清除浮动和使用overflow属性清除浮动各有什么优缺点？
-              </p>
+              <p>使用空标签清除浮动和使用overflow属性清除浮动各有什么优缺点？</p>
             </div>
           </div>
         </section>
@@ -1689,26 +1586,17 @@
 
           <h3>overflow属性值</h3>
           <ul>
-            <li>
-              <code>visible</code> - 默认值。内容不会被修剪，会呈现在元素框之外
-            </li>
+            <li><code>visible</code> - 默认值。内容不会被修剪，会呈现在元素框之外</li>
             <li><code>hidden</code> - 内容会被修剪，并且其余内容不可见</li>
-            <li>
-              <code>scroll</code> -
-              内容会被修剪，浏览器会显示滚动条以便查看其余内容
-            </li>
-            <li>
-              <code>auto</code> -
-              如果内容被修剪，则浏览器会显示滚动条以便查看其余内容
-            </li>
+            <li><code>scroll</code> - 内容会被修剪，浏览器会显示滚动条以便查看其余内容</li>
+            <li><code>auto</code> - 如果内容被修剪，则浏览器会显示滚动条以便查看其余内容</li>
           </ul>
 
           <div class="code-example">
             <code
-              >/* 隐藏溢出的内容 */ overflow: hidden; /* 显示滚动条 */ overflow:
-              scroll; /* 自动显示滚动条 */ overflow: auto; /*
-              分别设置水平和垂直方向的溢出 */ overflow-x: hidden; overflow-y:
-              scroll;</code
+              >/* 隐藏溢出的内容 */ overflow: hidden; /* 显示滚动条 */ overflow: scroll; /*
+              自动显示滚动条 */ overflow: auto; /* 分别设置水平和垂直方向的溢出 */ overflow-x:
+              hidden; overflow-y: scroll;</code
             >
           </div>
 
@@ -1735,9 +1623,7 @@
                 margin: 10px 0;
               "
             >
-              <p>
-                这个元素使用overflow: scroll; 溢出的内容将被修剪，但提供滚动条。
-              </p>
+              <p>这个元素使用overflow: scroll; 溢出的内容将被修剪，但提供滚动条。</p>
               <p>这是一段很长的文本，它会超出容器的高度。</p>
             </div>
           </div>
@@ -1755,10 +1641,7 @@
               </ul>
 
               <p><strong>练习2：简答题</strong></p>
-              <p>
-                <code>overflow: scroll;</code>和<code>overflow: auto;</code
-                >有什么区别？
-              </p>
+              <p><code>overflow: scroll;</code>和<code>overflow: auto;</code>有什么区别？</p>
             </div>
           </div>
         </section>
@@ -1771,9 +1654,9 @@
           <h3>position属性</h3>
           <div class="code-example">
             <code
-              >/* 静态定位（默认） */ position: static; /* 相对定位 */ position:
-              relative; /* 绝对定位 */ position: absolute; /* 固定定位 */
-              position: fixed; /* 粘性定位 */ position: sticky;</code
+              >/* 静态定位（默认） */ position: static; /* 相对定位 */ position: relative; /*
+              绝对定位 */ position: absolute; /* 固定定位 */ position: fixed; /* 粘性定位 */
+              position: sticky;</code
             >
           </div>
 
@@ -1824,9 +1707,7 @@
             <h4>练习：理解静态定位</h4>
             <div class="exercise-box">
               <p><strong>练习1：思考题</strong></p>
-              <p>
-                为什么在静态定位下无法使用边偏移属性（top、right、bottom、left）？
-              </p>
+              <p>为什么在静态定位下无法使用边偏移属性（top、right、bottom、left）？</p>
             </div>
           </div>
         </section>
@@ -1844,10 +1725,7 @@
           </ul>
 
           <div class="code-example">
-            <code
-              >.relative-box { position: relative; top: 20px; left: 30px;
-              }</code
-            >
+            <code>.relative-box { position: relative; top: 20px; left: 30px; }</code>
           </div>
 
           <div class="demo-box">
@@ -1892,9 +1770,8 @@
 
           <div class="code-example">
             <code
-              >.container { position: relative; /* 创建定位上下文 */ }
-              .absolute-box { position: absolute; top: 10px; right: 20px;
-              }</code
+              >.container { position: relative; /* 创建定位上下文 */ } .absolute-box { position:
+              absolute; top: 10px; right: 20px; }</code
             >
           </div>
 
@@ -1922,9 +1799,7 @@
             <h4>练习：使用绝对定位</h4>
             <div class="exercise-box">
               <p><strong>练习1：编码题</strong></p>
-              <p>
-                创建一个定位上下文容器，并在其中放置一个绝对定位的子元素，要求：
-              </p>
+              <p>创建一个定位上下文容器，并在其中放置一个绝对定位的子元素，要求：</p>
               <ul>
                 <li>容器有相对定位</li>
                 <li>子元素绝对定位在容器的右下角</li>
@@ -1940,9 +1815,7 @@
         <!-- 固定定位 -->
         <section id="fixed">
           <h2>固定定位</h2>
-          <p>
-            固定定位是相对于浏览器窗口进行定位，元素的位置不会随页面滚动而改变。
-          </p>
+          <p>固定定位是相对于浏览器窗口进行定位，元素的位置不会随页面滚动而改变。</p>
 
           <h3>固定定位的特点</h3>
           <ul>
@@ -1997,8 +1870,8 @@
 
           <div class="code-example">
             <code
-              >.box1 { position: absolute; z-index: 1; } .box2 { position:
-              absolute; z-index: 2; /* 这个元素会覆盖在box1上面 */ }</code
+              >.box1 { position: absolute; z-index: 1; } .box2 { position: absolute; z-index: 2; /*
+              这个元素会覆盖在box1上面 */ }</code
             >
           </div>
 
@@ -2123,10 +1996,7 @@
         <!-- Grid布局 -->
         <section id="grid">
           <h2>Grid布局</h2>
-          <p>
-            CSS
-            Grid是一个二维布局系统，可以同时处理行和列，非常适合构建复杂布局。
-          </p>
+          <p>CSS Grid是一个二维布局系统，可以同时处理行和列，非常适合构建复杂布局。</p>
 
           <h3>Grid容器属性</h3>
           <div class="demo-box">
@@ -2227,16 +2097,13 @@
           <p>响应式设计使网页能够适应不同设备和屏幕尺寸。</p>
 
           <h3>媒体查询</h3>
-          <p>
-            媒体查询是响应式设计的核心技术，允许根据设备特性应用不同的CSS规则。
-          </p>
+          <p>媒体查询是响应式设计的核心技术，允许根据设备特性应用不同的CSS规则。</p>
 
           <div class="code-example">
             <code
-              >/* 针对小屏幕设备的样式 */ @media (max-width: 768px) { .container
-              { flex-direction: column; } .sidebar { width: 100%; } } /*
-              针对打印的样式 */ @media print { .sidebar { display: none; } body
-              { font-size: 12pt; } }</code
+              >/* 针对小屏幕设备的样式 */ @media (max-width: 768px) { .container { flex-direction:
+              column; } .sidebar { width: 100%; } } /* 针对打印的样式 */ @media print { .sidebar {
+              display: none; } body { font-size: 12pt; } }</code
             >
           </div>
 
@@ -2307,52 +2174,55 @@
           </div>
         </section>
       </main>
+       <!-- 返回首页按钮 -->
+      <a href="index.html" class="back-to-home" title="返回首页">🏠</a>
+    </div>
     </div>
 
     <script>
       // 平滑滚动
-      document.querySelectorAll(".nav-links a").forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
+      document.querySelectorAll('.nav-links a').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault()
 
-          const targetId = this.getAttribute("href");
-          const targetElement = document.querySelector(targetId);
+          const targetId = this.getAttribute('href')
+          const targetElement = document.querySelector(targetId)
 
           // 使用scrollIntoView实现平滑滚动
           targetElement.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
+            behavior: 'smooth',
+            block: 'start'
+          })
 
           // 更新活动链接
-          document.querySelectorAll(".nav-links a").forEach((link) => {
-            link.classList.remove("active");
-          });
-          this.classList.add("active");
-        });
-      });
+          document.querySelectorAll('.nav-links a').forEach((link) => {
+            link.classList.remove('active')
+          })
+          this.classList.add('active')
+        })
+      })
 
       // 根据滚动位置更新活动链接
-      window.addEventListener("scroll", function () {
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll(".nav-links a");
+      window.addEventListener('scroll', function () {
+        const sections = document.querySelectorAll('section')
+        const navLinks = document.querySelectorAll('.nav-links a')
 
-        let current = "";
+        let current = ''
         sections.forEach((section) => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
+          const sectionTop = section.offsetTop
+          const sectionHeight = section.clientHeight
           if (window.scrollY >= sectionTop - 100) {
-            current = section.getAttribute("id");
+            current = section.getAttribute('id')
           }
-        });
+        })
 
         navLinks.forEach((link) => {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === `#${current}`) {
-            link.classList.add("active");
+          link.classList.remove('active')
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active')
           }
-        });
-      });
+        })
+      })
     </script>
   </body>
 </html>

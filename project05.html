@@ -25,7 +25,7 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
         color: var(--text-color);
         background-color: #f5f7fa;
@@ -158,7 +158,7 @@
         border-radius: 4px;
         padding: 1rem;
         margin: 1rem 0;
-        font-family: "Courier New", monospace;
+        font-family: 'Courier New', monospace;
         overflow-x: auto;
       }
 
@@ -293,6 +293,36 @@
         padding: 1rem;
         margin: 1rem 0;
       }
+      /* 返回首页按钮样式 */
+      .back-to-home {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .back-to-home:hover {
+        background-color: var(--dark-color);
+        transform: translateY(-3px);
+      }
+
+      .back-to-home:active {
+        transform: translateY(0);
+      }
     </style>
   </head>
   <body>
@@ -301,7 +331,7 @@
       <aside class="sidebar">
         <div class="sidebar-header">
           <h1>列表与超链接</h1>
-          <p>"优课教育"网站制作</p>
+          <p>"优课教育"网站首页制作</p>
         </div>
 
         <div class="nav-section">
@@ -337,23 +367,13 @@
         <!-- 列表与超链接简介 -->
         <section id="intro">
           <h1>列表与超链接知识手册</h1>
-          <p>
-            列表和超链接是网页中必不可少的元素，能够有效地组织和连接网页内容，提高用户体验。
-          </p>
+          <p>列表和超链接是网页中必不可少的元素，能够有效地组织和连接网页内容，提高用户体验。</p>
 
           <h2>列表与超链接的作用</h2>
           <ul>
-            <li>
-              <strong>有序组织内容</strong> -
-              列表可以将相关内容分组展示，使页面结构清晰
-            </li>
-            <li>
-              <strong>提高可读性</strong> - 列表形式便于用户快速扫描和理解内容
-            </li>
-            <li>
-              <strong>连接相关内容</strong> -
-              超链接可以将不同页面或内容区域连接起来
-            </li>
+            <li><strong>有序组织内容</strong> - 列表可以将相关内容分组展示，使页面结构清晰</li>
+            <li><strong>提高可读性</strong> - 列表形式便于用户快速扫描和理解内容</li>
+            <li><strong>连接相关内容</strong> - 超链接可以将不同页面或内容区域连接起来</li>
             <li><strong>增强导航功能</strong> - 超链接是实现网站导航的基础</li>
           </ul>
         </section>
@@ -366,9 +386,8 @@
           <h3>无序列表的基本语法</h3>
           <div class="code-example">
             <code
-              >&lt;ul&gt; &lt;li&gt;列表项一&lt;/li&gt;
-              &lt;li&gt;列表项二&lt;/li&gt; &lt;li&gt;列表项三&lt;/li&gt;
-              &lt;/ul&gt;</code
+              >&lt;ul&gt; &lt;li&gt;列表项一&lt;/li&gt; &lt;li&gt;列表项二&lt;/li&gt;
+              &lt;li&gt;列表项三&lt;/li&gt; &lt;/ul&gt;</code
             >
           </div>
 
@@ -430,9 +449,8 @@
           <h3>有序列表的基本语法</h3>
           <div class="code-example">
             <code
-              >&lt;ol&gt; &lt;li&gt;第一步&lt;/li&gt;
-              &lt;li&gt;第二步&lt;/li&gt; &lt;li&gt;第三步&lt;/li&gt;
-              &lt;/ol&gt;</code
+              >&lt;ol&gt; &lt;li&gt;第一步&lt;/li&gt; &lt;li&gt;第二步&lt;/li&gt;
+              &lt;li&gt;第三步&lt;/li&gt; &lt;/ol&gt;</code
             >
           </div>
 
@@ -490,10 +508,8 @@
           <h3>定义列表的基本语法</h3>
           <div class="code-example">
             <code
-              >&lt;dl&gt; &lt;dt&gt;术语一&lt;/dt&gt;
-              &lt;dd&gt;术语一的定义或描述&lt;/dd&gt;
-              &lt;dt&gt;术语二&lt;/dt&gt;
-              &lt;dd&gt;术语二的定义或描述&lt;/dd&gt; &lt;/dl&gt;</code
+              >&lt;dl&gt; &lt;dt&gt;术语一&lt;/dt&gt; &lt;dd&gt;术语一的定义或描述&lt;/dd&gt;
+              &lt;dt&gt;术语二&lt;/dt&gt; &lt;dd&gt;术语二的定义或描述&lt;/dd&gt; &lt;/dl&gt;</code
             >
           </div>
 
@@ -550,10 +566,9 @@
           <h3>列表嵌套的基本语法</h3>
           <div class="code-example">
             <code
-              >&lt;ul&gt; &lt;li&gt;一级列表项 &lt;ul&gt;
-              &lt;li&gt;二级列表项&lt;/li&gt; &lt;li&gt;二级列表项&lt;/li&gt;
-              &lt;/ul&gt; &lt;/li&gt; &lt;li&gt;一级列表项&lt;/li&gt;
-              &lt;/ul&gt;</code
+              >&lt;ul&gt; &lt;li&gt;一级列表项 &lt;ul&gt; &lt;li&gt;二级列表项&lt;/li&gt;
+              &lt;li&gt;二级列表项&lt;/li&gt; &lt;/ul&gt; &lt;/li&gt;
+              &lt;li&gt;一级列表项&lt;/li&gt; &lt;/ul&gt;</code
             >
           </div>
 
@@ -645,11 +660,10 @@
           <h3>list-style属性的语法</h3>
           <div class="code-example">
             <code
-              >/* 语法格式 */ list-style: list-style-type list-style-position
-              list-style-image; /* 示例 */ list-style: square inside; /*
-              方形符号，内部位置 */ list-style: none; /* 无项目符号 */
-              list-style: url('marker.png') outside; /*
-              使用图像作为项目符号，外部位置 */</code
+              >/* 语法格式 */ list-style: list-style-type list-style-position list-style-image; /*
+              示例 */ list-style: square inside; /* 方形符号，内部位置 */ list-style: none; /*
+              无项目符号 */ list-style: url('marker.png') outside; /* 使用图像作为项目符号，外部位置
+              */</code
             >
           </div>
 
@@ -701,8 +715,7 @@
 
               <p><strong>练习2：简答题</strong></p>
               <p>
-                <code>list-style-position: inside;</code>和<code
-                  >list-style-position: outside;</code
+                <code>list-style-position: inside;</code>和<code>list-style-position: outside;</code
                 >有什么区别？
               </p>
             </div>
@@ -712,19 +725,16 @@
         <!-- 背景图像定义列表项目符号 -->
         <section id="background-marker">
           <h2>背景图像定义列表项目符号</h2>
-          <p>
-            除了使用预定义的项目符号，还可以使用背景图像自定义列表项目符号。
-          </p>
+          <p>除了使用预定义的项目符号，还可以使用背景图像自定义列表项目符号。</p>
 
           <h3>使用背景图像定义项目符号的方法</h3>
           <div class="code-example">
             <code
-              >ul { list-style: none; /* 移除默认项目符号 */ padding-left: 0; /*
-              移除默认内边距 */ } li { padding-left: 30px; /* 为背景图像留出空间
-              */ background-image: url('marker.png'); /* 设置背景图像 */
-              background-repeat: no-repeat; /* 不重复背景图像 */
-              background-position: left center; /* 背景图像位置 */
-              background-size: 20px 20px; /* 背景图像尺寸 */ }</code
+              >ul { list-style: none; /* 移除默认项目符号 */ padding-left: 0; /* 移除默认内边距 */ }
+              li { padding-left: 30px; /* 为背景图像留出空间 */ background-image: url('marker.png');
+              /* 设置背景图像 */ background-repeat: no-repeat; /* 不重复背景图像 */
+              background-position: left center; /* 背景图像位置 */ background-size: 20px 20px; /*
+              背景图像尺寸 */ }</code
             >
           </div>
 
@@ -782,9 +792,7 @@
               </ul>
 
               <p><strong>练习2：简答题</strong></p>
-              <p>
-                使用背景图像定义列表项目符号相比使用list-style-type有什么优势？
-              </p>
+              <p>使用背景图像定义列表项目符号相比使用list-style-type有什么优势？</p>
             </div>
           </div>
         </section>
@@ -858,16 +866,12 @@
           <h3>创建锚点链接的步骤</h3>
           <ol>
             <li><strong>定义锚点</strong> - 使用id属性标记目标位置</li>
-            <li>
-              <strong>创建链接</strong> - 使用<code>&lt;a href="#id名"&gt;</code
-              >创建链接文本
-            </li>
+            <li><strong>创建链接</strong> - 使用<code>&lt;a href="#id名"&gt;</code>创建链接文本</li>
           </ol>
 
           <div class="code-example">
             <code
-              >&lt;!-- 定义锚点 --&gt; &lt;h2
-              id="section1"&gt;第一部分&lt;/h2&gt;
+              >&lt;!-- 定义锚点 --&gt; &lt;h2 id="section1"&gt;第一部分&lt;/h2&gt;
               &lt;p&gt;第一部分的内容...&lt;/p&gt; &lt;!-- 创建链接 --&gt; &lt;a
               href="#section1"&gt;跳转到第一部分&lt;/a&gt;</code
             >
@@ -926,23 +930,18 @@
 
           <div class="code-example">
             <code
-              >/* 未访问的链接 */ a:link { color: blue; text-decoration: none; }
-              /* 已访问的链接 */ a:visited { color: purple; } /* 鼠标悬停 */
-              a:hover { color: red; text-decoration: underline; } /*
-              链接被点击时 */ a:active { color: green; }</code
+              >/* 未访问的链接 */ a:link { color: blue; text-decoration: none; } /* 已访问的链接 */
+              a:visited { color: purple; } /* 鼠标悬停 */ a:hover { color: red; text-decoration:
+              underline; } /* 链接被点击时 */ a:active { color: green; }</code
             >
           </div>
 
           <div class="demo-box">
             <h4>链接伪类示例</h4>
             <div class="link-demo">
-              <a href="#" style="color: blue; text-decoration: none"
-                >未访问链接</a
-              >
+              <a href="#" style="color: blue; text-decoration: none">未访问链接</a>
               <a href="#" style="color: purple">已访问链接</a>
-              <a href="#" style="color: red; text-decoration: underline"
-                >悬停状态</a
-              >
+              <a href="#" style="color: red; text-decoration: underline">悬停状态</a>
               <a href="#" style="color: green">点击状态</a>
             </div>
           </div>
@@ -953,9 +952,7 @@
               <li>
                 同时使用链接的4种伪类时，需要按照a:link、a:visited、a:hover和a:active的顺序书写，否则定义的样式可能不起作用。
               </li>
-              <li>
-                除了文本样式之外，链接伪类还可用于控制超链接的背景、边框等样式。
-              </li>
+              <li>除了文本样式之外，链接伪类还可用于控制超链接的背景、边框等样式。</li>
             </ol>
           </div>
 
@@ -1034,52 +1031,54 @@
           </div>
         </section>
       </main>
+      <!-- 返回首页按钮 -->
+      <a href="index.html" class="back-to-home" title="返回首页">🏠</a>
     </div>
 
     <script>
       // 平滑滚动
-      document.querySelectorAll(".nav-links a").forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
+      document.querySelectorAll('.nav-links a').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault()
 
-          const targetId = this.getAttribute("href");
-          const targetElement = document.querySelector(targetId);
+          const targetId = this.getAttribute('href')
+          const targetElement = document.querySelector(targetId)
 
           // 使用scrollIntoView实现平滑滚动
           targetElement.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
+            behavior: 'smooth',
+            block: 'start'
+          })
 
           // 更新活动链接
-          document.querySelectorAll(".nav-links a").forEach((link) => {
-            link.classList.remove("active");
-          });
-          this.classList.add("active");
-        });
-      });
+          document.querySelectorAll('.nav-links a').forEach((link) => {
+            link.classList.remove('active')
+          })
+          this.classList.add('active')
+        })
+      })
 
       // 根据滚动位置更新活动链接
-      window.addEventListener("scroll", function () {
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll(".nav-links a");
+      window.addEventListener('scroll', function () {
+        const sections = document.querySelectorAll('section')
+        const navLinks = document.querySelectorAll('.nav-links a')
 
-        let current = "";
+        let current = ''
         sections.forEach((section) => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
+          const sectionTop = section.offsetTop
+          const sectionHeight = section.clientHeight
           if (window.scrollY >= sectionTop - 100) {
-            current = section.getAttribute("id");
+            current = section.getAttribute('id')
           }
-        });
+        })
 
         navLinks.forEach((link) => {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === `#${current}`) {
-            link.classList.add("active");
+          link.classList.remove('active')
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active')
           }
-        });
-      });
+        })
+      })
     </script>
   </body>
 </html>

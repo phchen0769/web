@@ -25,7 +25,7 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
         color: var(--text-color);
         background-color: #f5f7fa;
@@ -158,7 +158,7 @@
         border-radius: 4px;
         padding: 1rem;
         margin: 1rem 0;
-        font-family: "Courier New", monospace;
+        font-family: 'Courier New', monospace;
         overflow-x: auto;
       }
 
@@ -315,6 +315,36 @@
           max-height: none;
         }
       }
+      /* 返回首页按钮样式 */
+      .back-to-home {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .back-to-home:hover {
+        background-color: var(--dark-color);
+        transform: translateY(-3px);
+      }
+
+      .back-to-home:active {
+        transform: translateY(0);
+      }
     </style>
   </head>
   <body>
@@ -323,7 +353,7 @@
       <aside class="sidebar">
         <div class="sidebar-header">
           <h1>视频与动画效果</h1>
-          <p>项目7 - 知识点与练习</p>
+          <p>“视频8”首页制作</p>
         </div>
 
         <div class="nav-section">
@@ -338,7 +368,7 @@
         <div class="nav-section">
           <h3>音视频嵌入</h3>
           <ul class="nav-links">
-            <li><a href="#task-7-1">任务7-1：嵌入视频和音频</a></li>
+            <li><a href="#task-7-1">嵌入视频和音频</a></li>
             <li><a href="#audio-video-overview">音视频嵌入技术概述</a></li>
             <li><a href="#embed-video">嵌入视频</a></li>
             <li><a href="#embed-audio">嵌入音频</a></li>
@@ -350,7 +380,7 @@
         <div class="nav-section">
           <h3>过渡效果</h3>
           <ul class="nav-links">
-            <li><a href="#task-7-2">任务7-2：添加过渡效果</a></li>
+            <li><a href="#task-7-2">添加过渡效果</a></li>
             <li><a href="#transition-property">transition-property</a></li>
             <li><a href="#transition-duration">transition-duration</a></li>
             <li><a href="#transition-timing">transition-timing-function</a></li>
@@ -362,7 +392,7 @@
         <div class="nav-section">
           <h3>变形效果</h3>
           <ul class="nav-links">
-            <li><a href="#task-7-3">任务7-3：添加变形效果</a></li>
+            <li><a href="#task-7-3">添加变形效果</a></li>
             <li><a href="#2d-transforms">2D变形</a></li>
             <li><a href="#3d-transforms">3D变形</a></li>
           </ul>
@@ -371,7 +401,7 @@
         <div class="nav-section">
           <h3>动画效果</h3>
           <ul class="nav-links">
-            <li><a href="#task-7-4">任务7-4：添加动画效果</a></li>
+            <li><a href="#task-7-4">添加动画效果</a></li>
             <li><a href="#keyframes">@keyframes规则</a></li>
             <li><a href="#animation-name">animation-name</a></li>
             <li><a href="#animation-duration">animation-duration</a></li>
@@ -388,7 +418,7 @@
         <div class="nav-section">
           <h3>项目实践</h3>
           <ul class="nav-links">
-            <li><a href="#task-7-5">任务7-5：页面建设准备</a></li>
+            <li><a href="#task-7-5">页面建设准备</a></li>
             <li><a href="#project-demo">项目展示</a></li>
           </ul>
         </div>
@@ -398,7 +428,7 @@
       <main class="main-content">
         <!-- 项目简介 -->
         <section id="intro">
-          <h1>项目7："视频8"首页制作</h1>
+          <h1>视频、音频、变形、过渡以及动画</h1>
           <p>
             本项目专注于网页中音视频嵌入以及CSS3过渡、变形和动画效果的应用，通过实际案例"视频8"首页的制作，掌握现代网页设计中的动态效果实现。
           </p>
@@ -434,14 +464,12 @@
           <p>
             接到王经理安排的任务后，小思制定了近期的项目计划：首先了解网站音频、视频的嵌入方式，然后学习CSS3新增的过渡、变形、动画等属性。最后运用所学知识，制作一个带有视频和过渡效果的网站。
           </p>
-          <p>
-            本项目只演示"视频8"首页的制作过程，但涵盖的技术可以应用于各种现代网页设计中。
-          </p>
+          <p>本项目只演示"视频8"首页的制作过程，但涵盖的技术可以应用于各种现代网页设计中。</p>
         </section>
 
         <!-- 任务7-1：嵌入视频和音频 -->
         <section id="task-7-1">
-          <h2>任务7-1：网页中嵌入视频和音频</h2>
+          <h2>网页中嵌入视频和音频</h2>
 
           <h3>需求分析</h3>
           <p>
@@ -459,9 +487,7 @@
         <!-- 音视频嵌入技术概述 -->
         <section id="audio-video-overview">
           <h3>音频、视频嵌入技术概述</h3>
-          <p>
-            了解使用第三方插件和使用HTML5中的标签嵌入视频和音频的区别，能够说出它们的优缺点。
-          </p>
+          <p>了解使用第三方插件和使用HTML5中的标签嵌入视频和音频的区别，能够说出它们的优缺点。</p>
 
           <div class="demo-box">
             <h4>HTML5音视频嵌入 vs 第三方插件</h4>
@@ -480,9 +506,7 @@
           <div class="exercise">
             <h4>练习：比较嵌入方式</h4>
             <div class="exercise-box">
-              <p>
-                列出HTML5音视频标签与第三方插件（如Flash）在以下方面的对比：
-              </p>
+              <p>列出HTML5音视频标签与第三方插件（如Flash）在以下方面的对比：</p>
               <ul>
                 <li>兼容性</li>
                 <li>性能</li>
@@ -501,20 +525,16 @@
 
           <div class="code-example">
             <code
-              >&lt;video width="640" height="360" controls&gt; &lt;source
-              src="movie.mp4" type="video/mp4"&gt; &lt;source src="movie.webm"
-              type="video/webm"&gt; &lt;source src="movie.ogg"
-              type="video/ogg"&gt; 您的浏览器不支持HTML5视频标签。
+              >&lt;video width="640" height="360" controls&gt; &lt;source src="movie.mp4"
+              type="video/mp4"&gt; &lt;source src="movie.webm" type="video/webm"&gt; &lt;source
+              src="movie.ogg" type="video/ogg"&gt; 您的浏览器不支持HTML5视频标签。
               &lt;/video&gt;</code
             >
           </div>
 
           <div class="video-demo">
             <video controls>
-              <source
-                src="https://www.w3schools.com/html/mov_bbb.mp4"
-                type="video/mp4"
-              />
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
               您的浏览器不支持HTML5视频标签。
             </video>
           </div>
@@ -540,11 +560,9 @@
 
           <div class="code-example">
             <code
-              >&lt;audio controls&gt; &lt;source src="audio.mp3"
-              type="audio/mpeg"&gt; &lt;source src="audio.ogg"
-              type="audio/ogg"&gt; &lt;source src="audio.wav"
-              type="audio/wav"&gt; 您的浏览器不支持HTML5音频标签。
-              &lt;/audio&gt;</code
+              >&lt;audio controls&gt; &lt;source src="audio.mp3" type="audio/mpeg"&gt; &lt;source
+              src="audio.ogg" type="audio/ogg"&gt; &lt;source src="audio.wav" type="audio/wav"&gt;
+              您的浏览器不支持HTML5音频标签。 &lt;/audio&gt;</code
             >
           </div>
 
@@ -579,9 +597,7 @@
           <div class="exercise">
             <h4>练习：兼容性处理</h4>
             <div class="exercise-box">
-              <p>
-                研究当前主流浏览器（Chrome、Firefox、Safari、Edge）对以下格式的支持情况：
-              </p>
+              <p>研究当前主流浏览器（Chrome、Firefox、Safari、Edge）对以下格式的支持情况：</p>
               <ul>
                 <li>MP4/H.264</li>
                 <li>WebM/VP9</li>
@@ -602,8 +618,8 @@
 
           <div class="code-example">
             <code
-              >&lt;video width="800" height="450" controls&gt; &lt;source
-              src="movie.mp4" type="video/mp4"&gt; &lt;/video&gt;</code
+              >&lt;video width="800" height="450" controls&gt; &lt;source src="movie.mp4"
+              type="video/mp4"&gt; &lt;/video&gt;</code
             >
           </div>
 
@@ -629,7 +645,7 @@
 
         <!-- 任务7-2：添加过渡效果 -->
         <section id="task-7-2">
-          <h2>任务7-2：网页中添加过渡效果</h2>
+          <h2>网页中添加过渡效果</h2>
 
           <h3>需求分析</h3>
           <p>
@@ -672,10 +688,7 @@
           <p>掌握设置transition-duration属性的用法，并能够在网页中运用。</p>
 
           <div class="code-example">
-            <code
-              >.demo { transition-property: all; transition-duration: 0.5s;
-              }</code
-            >
+            <code>.demo { transition-property: all; transition-duration: 0.5s; }</code>
           </div>
 
           <div class="exercise">
@@ -695,18 +708,14 @@
         <!-- transition-timing-function -->
         <section id="transition-timing">
           <h3>transition-timing-function 属性</h3>
-          <p>
-            掌握设置transition-timing-function属性的用法，并能够在网页中运用。
-          </p>
+          <p>掌握设置transition-timing-function属性的用法，并能够在网页中运用。</p>
 
           <div class="code-example">
             <code
-              >.demo { transition-timing-function: ease-in-out; } /* 其他可选值
-              */ .demo1 { transition-timing-function: linear; } .demo2 {
-              transition-timing-function: ease-in; } .demo3 {
-              transition-timing-function: ease-out; } .demo4 {
-              transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
-              }</code
+              >.demo { transition-timing-function: ease-in-out; } /* 其他可选值 */ .demo1 {
+              transition-timing-function: linear; } .demo2 { transition-timing-function: ease-in; }
+              .demo3 { transition-timing-function: ease-out; } .demo4 { transition-timing-function:
+              cubic-bezier(0.68, -0.55, 0.27, 1.55); }</code
             >
           </div>
 
@@ -754,8 +763,8 @@
 
           <div class="code-example">
             <code
-              >.demo { /* property duration timing-function delay */ transition:
-              all 0.5s ease-in-out 0.1s; }</code
+              >.demo { /* property duration timing-function delay */ transition: all 0.5s
+              ease-in-out 0.1s; }</code
             >
           </div>
 
@@ -781,7 +790,7 @@
 
         <!-- 任务7-3：添加变形效果 -->
         <section id="task-7-3">
-          <h2>任务7-3：在网页中添加变形效果</h2>
+          <h2>在网页中添加变形效果</h2>
 
           <h3>需求分析</h3>
           <p>
@@ -790,9 +799,7 @@
 
           <div class="exercise">
             <h4>学习目标</h4>
-            <p>
-              掌握2D和3D变形的方法，能够为网页元素设置变形效果，并能够列举各种变形效果。
-            </p>
+            <p>掌握2D和3D变形的方法，能够为网页元素设置变形效果，并能够列举各种变形效果。</p>
           </div>
         </section>
 
@@ -805,10 +812,9 @@
 
           <div class="code-example">
             <code
-              >/* 平移 */ transform: translate(50px, 100px); /* 缩放 */
-              transform: scale(1.5, 1.5); /* 旋转 */ transform: rotate(45deg);
-              /* 倾斜 */ transform: skew(30deg, 20deg); /* 多重变换 */
-              transform: translate(50px, 100px) rotate(45deg) scale(1.5);</code
+              >/* 平移 */ transform: translate(50px, 100px); /* 缩放 */ transform: scale(1.5, 1.5);
+              /* 旋转 */ transform: rotate(45deg); /* 倾斜 */ transform: skew(30deg, 20deg); /*
+              多重变换 */ transform: translate(50px, 100px) rotate(45deg) scale(1.5);</code
             >
           </div>
 
@@ -843,10 +849,9 @@
 
           <div class="code-example">
             <code
-              >/* 绕X轴旋转 */ transform: rotateX(60deg); /* 绕Y轴旋转 */
-              transform: rotateY(60deg); /* 绕Z轴旋转 */ transform:
-              rotateZ(60deg); /* 3D平移 */ transform: translate3d(50px, 100px,
-              50px); /* 透视 */ perspective: 500px;</code
+              >/* 绕X轴旋转 */ transform: rotateX(60deg); /* 绕Y轴旋转 */ transform: rotateY(60deg);
+              /* 绕Z轴旋转 */ transform: rotateZ(60deg); /* 3D平移 */ transform: translate3d(50px,
+              100px, 50px); /* 透视 */ perspective: 500px;</code
             >
           </div>
 
@@ -873,7 +878,7 @@
 
         <!-- 任务7-4：添加动画效果 -->
         <section id="task-7-4">
-          <h2>任务7-4：网页中添加动画效果</h2>
+          <h2>网页中添加动画效果</h2>
 
           <h3>需求分析</h3>
           <p>
@@ -882,9 +887,7 @@
 
           <div class="exercise">
             <h4>学习目标</h4>
-            <p>
-              掌握CSS3动画属性的使用方法，能够定义关键帧动画并在网页中应用。
-            </p>
+            <p>掌握CSS3动画属性的使用方法，能够定义关键帧动画并在网页中应用。</p>
           </div>
         </section>
 
@@ -895,12 +898,11 @@
 
           <div class="code-example">
             <code
-              >@keyframes example { 0% { background-color: red; left: 0px; top:
-              0px; } 25% { background-color: yellow; left: 200px; top: 0px; }
-              50% { background-color: blue; left: 200px; top: 200px; } 75% {
-              background-color: green; left: 0px; top: 200px; } 100% {
-              background-color: red; left: 0px; top: 0px; } } .demo {
-              animation-name: example; animation-duration: 4s; }</code
+              >@keyframes example { 0% { background-color: red; left: 0px; top: 0px; } 25% {
+              background-color: yellow; left: 200px; top: 0px; } 50% { background-color: blue; left:
+              200px; top: 200px; } 75% { background-color: green; left: 0px; top: 200px; } 100% {
+              background-color: red; left: 0px; top: 0px; } } .demo { animation-name: example;
+              animation-duration: 4s; }</code
             >
           </div>
 
@@ -1025,14 +1027,12 @@
 
           <div class="code-example">
             <code
-              >.demo { /* 播放动画的次数 */ animation-iteration-count: 3; /*
-              指定动画循环播放 */ animation-iteration-count: infinite; }</code
+              >.demo { /* 播放动画的次数 */ animation-iteration-count: 3; /* 指定动画循环播放 */
+              animation-iteration-count: infinite; }</code
             >
           </div>
 
-          <div class="animation-demo animate" id="animation-demo-1">
-            无限循环动画
-          </div>
+          <div class="animation-demo animate" id="animation-demo-1">无限循环动画</div>
 
           <div class="exercise">
             <h4>练习：动画循环控制</h4>
@@ -1080,9 +1080,8 @@
 
           <div class="code-example">
             <code
-              >.demo { /* name duration timing-function delay iteration-count
-              direction */ animation: example 3s ease-in-out 1s infinite
-              alternate; }</code
+              >.demo { /* name duration timing-function delay iteration-count direction */
+              animation: example 3s ease-in-out 1s infinite alternate; }</code
             >
           </div>
 
@@ -1104,7 +1103,7 @@
 
         <!-- 任务7-5：页面建设准备 -->
         <section id="task-7-5">
-          <h2>任务7-5：页面建设准备工作</h2>
+          <h2>页面建设准备工作</h2>
 
           <h3>需求分析</h3>
           <p>
@@ -1113,18 +1112,14 @@
 
           <div class="exercise">
             <h4>学习目标</h4>
-            <p>
-              掌握网站建设的前期准备工作，能够进行素材整理、结构分析和基础样式定义。
-            </p>
+            <p>掌握网站建设的前期准备工作，能够进行素材整理、结构分析和基础样式定义。</p>
           </div>
         </section>
 
         <!-- 项目展示 -->
         <section id="project-demo">
           <h3>项目展示</h3>
-          <p>
-            完成所有知识点的学习后，可以开始制作"视频8"首页。项目将包含以下模块：
-          </p>
+          <p>完成所有知识点的学习后，可以开始制作"视频8"首页。项目将包含以下模块：</p>
 
           <ul>
             <li>引导栏模块</li>
@@ -1156,76 +1151,78 @@
           </div>
         </section>
       </main>
+      <!-- 返回首页按钮 -->
+      <a href="index.html" class="back-to-home" title="返回首页">🏠</a>
     </div>
 
     <script>
       // 平滑滚动
-      document.querySelectorAll(".nav-links a").forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
+      document.querySelectorAll('.nav-links a').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault()
 
-          const targetId = this.getAttribute("href");
-          const targetElement = document.querySelector(targetId);
+          const targetId = this.getAttribute('href')
+          const targetElement = document.querySelector(targetId)
 
           // 使用scrollIntoView实现平滑滚动
           targetElement.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
+            behavior: 'smooth',
+            block: 'start'
+          })
 
           // 更新活动链接
-          document.querySelectorAll(".nav-links a").forEach((link) => {
-            link.classList.remove("active");
-          });
-          this.classList.add("active");
-        });
-      });
+          document.querySelectorAll('.nav-links a').forEach((link) => {
+            link.classList.remove('active')
+          })
+          this.classList.add('active')
+        })
+      })
 
       // 根据滚动位置更新活动链接
-      window.addEventListener("scroll", function () {
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll(".nav-links a");
+      window.addEventListener('scroll', function () {
+        const sections = document.querySelectorAll('section')
+        const navLinks = document.querySelectorAll('.nav-links a')
 
-        let current = "";
+        let current = ''
         sections.forEach((section) => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
+          const sectionTop = section.offsetTop
+          const sectionHeight = section.clientHeight
           if (window.scrollY >= sectionTop - 100) {
-            current = section.getAttribute("id");
+            current = section.getAttribute('id')
           }
-        });
+        })
 
         navLinks.forEach((link) => {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === `#${current}`) {
-            link.classList.add("active");
+          link.classList.remove('active')
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active')
           }
-        });
-      });
+        })
+      })
 
       // 动态演示效果
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener('DOMContentLoaded', function () {
         // 为过渡演示添加更多交互
-        const transitionDemo = document.getElementById("transition-demo-1");
-        transitionDemo.addEventListener("click", function () {
-          this.classList.toggle("active");
-        });
+        const transitionDemo = document.getElementById('transition-demo-1')
+        transitionDemo.addEventListener('click', function () {
+          this.classList.toggle('active')
+        })
 
         // 为变形演示添加更多交互
-        const transformDemo = document.getElementById("transform-demo-1");
-        transformDemo.addEventListener("click", function () {
+        const transformDemo = document.getElementById('transform-demo-1')
+        transformDemo.addEventListener('click', function () {
           this.style.transform =
-            this.style.transform === "rotate(45deg) scale(1.2)"
-              ? "rotate(0deg) scale(1)"
-              : "rotate(45deg) scale(1.2)";
-        });
+            this.style.transform === 'rotate(45deg) scale(1.2)'
+              ? 'rotate(0deg) scale(1)'
+              : 'rotate(45deg) scale(1.2)'
+        })
 
         // 为动画演示添加控制
-        const animationDemo = document.getElementById("animation-demo-1");
-        animationDemo.addEventListener("click", function () {
-          this.classList.toggle("animate");
-        });
-      });
+        const animationDemo = document.getElementById('animation-demo-1')
+        animationDemo.addEventListener('click', function () {
+          this.classList.toggle('animate')
+        })
+      })
     </script>
   </body>
 </html>

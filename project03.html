@@ -277,6 +277,36 @@
         white-space: pre-wrap; /* 不必要，但可确保换行显示 */
         caret-color: #111;
       }
+      /* 返回首页按钮样式 */
+      .back-to-home {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .back-to-home:hover {
+        background-color: var(--dark-color);
+        transform: translateY(-3px);
+      }
+
+      .back-to-home:active {
+        transform: translateY(0);
+      }
     </style>
   </head>
 
@@ -286,7 +316,7 @@
       <aside class="sidebar">
         <div class="sidebar-header">
           <h1>CSS参考手册</h1>
-          <p>完整知识点整理 + 配套练习</p>
+          <p>“网上花店”专题页制作</p>
         </div>
 
         <div class="nav-section">
@@ -866,31 +896,6 @@
                   class="special"&gt;特殊列表项&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt;
                   &lt;/div&gt;</code
                 >
-
-                <textarea readonly style="width: 100%; height: 8rem; font-family: monospace">
-  <div class="container">
-    <h1 class="title">
-      主标题
-    </h1>
-    <div class="content">
-      <h2>
-        副标题
-      </h2>
-      <p>
-        段落内容
-      </p>
-      <ul>
-        <li>
-          列表项1
-        </li>
-        <li class="special">
-          特殊列表项
-        </li>
-      </ul>
-    </div>
-  </div>
-</textarea
-                >
               </div>
               <p><strong>要求：</strong></p>
               <ul>
@@ -1053,6 +1058,8 @@
           </div>
         </section>
       </main>
+      <!-- 返回首页按钮 -->
+      <a href="index.html" class="back-to-home" title="返回首页">🏠</a>
     </div>
 
     <script>
