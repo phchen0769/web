@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript学习项目二：简单计算器</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f7fa;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* 左侧导航栏 */
+      .sidebar {
+        width: 280px;
+        background: linear-gradient(to bottom, #2c3e50, #34495e);
+        color: #ecf0f1;
+        padding: 20px 0;
+        overflow-y: auto;
+        position: fixed;
+        height: 100vh;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar-header {
+        padding: 0 20px 20px;
+        border-bottom: 1px solid #4a6278;
+        margin-bottom: 20px;
+      }
+
+      .sidebar h2 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+      }
+
+      .sidebar h3 {
+        font-size: 1rem;
+        color: #bdc3c7;
+        font-weight: normal;
+      }
+
+      .nav-list {
+        list-style: none;
+      }
+
+      .nav-item {
+        margin-bottom: 5px;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 12px 20px;
+        color: #ecf0f1;
+        text-decoration: none;
+        transition: all 0.3s;
+        border-left: 3px solid transparent;
+      }
+
+      .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-left: 3px solid #3498db;
+      }
+
+      .nav-link.active {
+        background-color: rgba(52, 152, 219, 0.2);
+        border-left: 3px solid #3498db;
+      }
+
+      /* 右侧内容区域 */
+      .main-content {
+        flex: 1;
+        margin-left: 280px;
+        padding: 30px;
+        max-width: 1200px;
+      }
+
+      .section {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        display: none;
+      }
+
+      .section.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .section h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #3498db;
+      }
+
+      .section h3 {
+        color: #2c3e50;
+        margin: 25px 0 15px;
+      }
+
+      .section p {
+        margin-bottom: 15px;
+      }
+
+      .section ul,
+      .section ol {
+        margin-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      .section li {
+        margin-bottom: 8px;
+      }
+
+      /* 代码区域样式 */
+      .code-container {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        overflow-x: auto;
+        font-family: 'Courier New', monospace;
+      }
+
+      .code-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #4a6278;
+      }
+
+      .code-title {
+        font-weight: bold;
+        color: #3498db;
+      }
+
+      .run-button {
+        background-color: #27ae60;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-weight: bold;
+      }
+
+      .run-button:hover {
+        background-color: #219653;
+      }
+
+      /* 任务实现区域样式 */
+      .task-demo {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 25px 0;
+        border-left: 4px solid #3498db;
+      }
+
+      .demo-button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+
+      .demo-button:hover {
+        background-color: #2980b9;
+      }
+
+      /* 计算器样式 */
+      .calculator-container {
+        max-width: 500px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .calculator {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .calculator h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #2c3e50;
+      }
+
+      .input-group {
+        margin-bottom: 15px;
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      .input-group input,
+      .input-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .calculator-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .calc-button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        flex: 1;
+        margin: 0 5px;
+      }
+
+      .calc-button:hover {
+        background-color: #2980b9;
+      }
+
+      .calc-button.reset {
+        background-color: #e74c3c;
+      }
+
+      .calc-button.reset:hover {
+        background-color: #c0392b;
+      }
+
+      .result-box {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f0f8ff;
+        border-radius: 5px;
+        border-left: 4px solid #3498db;
+        display: none;
+      }
+
+      .result-box h4 {
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+
+      /* 运算符表格样式 */
+      .operator-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      .operator-table th,
+      .operator-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .operator-table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 992px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          position: static;
+          height: auto;
+        }
+
+        .main-content {
+          margin-left: 0;
+        }
+      }
+
+      /* 页脚 */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: #7f8c8d;
+        font-size: 0.9rem;
+        margin-top: 30px;
+        border-top: 1px solid #ecf0f1;
+      }
+
+      /* 提示框样式 */
+      .alert-box {
+        padding: 12px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        display: none;
+      }
+
+      .alert-box.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .alert-box.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+
+      .alert-box.info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 左侧导航栏 -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>JavaScript学习项目二</h2>
+          <h3>简单计算器 —— 判断结构</h3>
+        </div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#intro" class="nav-link active">项目介绍</a></li>
+          <li class="nav-item"><a href="#targets" class="nav-link">学习目标</a></li>
+          <li class="nav-item"><a href="#task1" class="nav-link">任务1：认识变量和字符串</a></li>
+          <li class="nav-item"><a href="#task2" class="nav-link">任务2：输入对话框</a></li>
+          <li class="nav-item"><a href="#task3" class="nav-link">任务3：判断是否为整数</a></li>
+          <li class="nav-item">
+            <a href="#task4" class="nav-link">任务4：判断指定范围的奇偶数</a>
+          </li>
+          <li class="nav-item"><a href="#task5" class="nav-link">任务5：加法运算器</a></li>
+          <li class="nav-item"><a href="#task6" class="nav-link">任务6：项目实现</a></li>
+          <li class="nav-item"><a href="#project-demo" class="nav-link">计算器演示</a></li>
+        </ul>
+      </aside>
+
+      <!-- 右侧主要内容区域 -->
+      <main class="main-content">
+        <!-- 项目介绍 -->
+        <section id="intro" class="section active">
+          <h2>项目二：简单计算器 —— 判断结构</h2>
+          <p>
+            设计一个简单的计算器，能进行加、减、乘、除四则运算。当用户运行网页时，依次弹出三个输入对话框，分别要求输入两个数和一个运算符号（+、-、×、÷）。输入无误时，在页面上打印计算算式。在进行除法运算时，除数不能为0，否则打印错误信息。如果输入数字格式错误或者输入的运算符号错误都提示相应的不能运算信息。
+          </p>
+
+          <h3>项目情境</h3>
+          <ul>
+            <li>熟悉变量和常量的概念与使用方法。</li>
+            <li>熟悉基本数据类型的概念。</li>
+            <li>熟悉数据类型的转换。</li>
+            <li>熟悉关系运算符、逻辑运算符、算术运算符的使用方法。</li>
+            <li>熟悉判断结构的使用方法。</li>
+            <li>熟悉几个内置函数的使用方法。</li>
+            <li>培养逻辑思维和问题解决能力。</li>
+            <li>培养耐心和细致的工作态度。</li>
+          </ul>
+        </section>
+
+        <!-- 学习目标 -->
+        <section id="targets" class="section">
+          <h2>学习目标</h2>
+          <ul>
+            <li>理解变量和常量的概念，掌握其定义和使用方法。</li>
+            <li>掌握JavaScript的基本数据类型。</li>
+            <li>理解并掌握数据类型的转换。</li>
+            <li>掌握各种运算符的使用方法和优先级。</li>
+            <li>掌握判断结构（if语句、switch语句）的使用方法。</li>
+            <li>能够使用prompt()函数获取用户输入。</li>
+            <li>能够处理用户输入的验证和错误处理。</li>
+            <li>能够实现一个简单的四则运算计算器。</li>
+          </ul>
+        </section>
+
+        <!-- 任务1：认识变量和字符串 -->
+        <section id="task1" class="section">
+          <h2>任务1：认识变量和字符串</h2>
+          <p>打开页面，打印程序中指定的姓名和性别。</p>
+
+          <h3>相关知识</h3>
+
+          <h4>1. 变量的定义</h4>
+          <p>定义一个变量用关键字<code>var</code>，例如：</p>
+          <div class="code-container">
+            <pre>
+var x;
+var y;</pre
+            >
+          </div>
+          <p>一个<code>var</code>也可以同时定义多个变量，这些变量间用逗号隔开，例如：</p>
+          <div class="code-container">
+            <pre>var x, y, z;</pre>
+          </div>
+
+          <h4>2. 变量的赋值</h4>
+          <p>
+            变量的赋值就是把值存储在变量所在的内存单元中，方法是用"="运算符。赋值可以是在定义变量时，例如：
+          </p>
+          <div class="code-container">
+            <pre>
+var x = 0;
+var y = 1, z = 2;</pre
+            >
+          </div>
+          <p>也可以是在变量定义后使用时才赋值，例如：</p>
+          <div class="code-container">
+            <pre>
+var x;
+x = 0;</pre
+            >
+          </div>
+
+          <h4>3. 变量的命名</h4>
+          <p>
+            变量的名称必须是由ASCII字符或者下划线（_）开头，第一个字符不能是数字，但其后可以是数字或者其他字母。例如如下变量的命名是合法的：
+          </p>
+          <div class="code-container">
+            <pre>
+a
+A
+_a
+a_1</pre
+            >
+          </div>
+          <p>
+            注意：JavaScript语言对大小写是敏感的，所以变量<code>a</code>和变量<code>A</code>是两个不同的变量。变量名不能定义为JavaScript的保留字。例如不能定义一个变量的名称为<code>var</code>或者<code>function</code>。
+          </p>
+
+          <h4>4. 常量</h4>
+          <p>与变量对应的是常量。常量用来表示一个固定不变的值。比如下面这些这些都是常量：</p>
+          <div class="code-container">
+            <pre>
+123
+25.78
+"张三"
+true</pre
+            >
+          </div>
+          <p>
+            在ECMAScript 6以上版本中，常量可以使用关键字<code>const</code>来定义，如<code
+              >const PI = 3.14</code
+            >。常量在声明时可以使用大小写，但通常情况下全部用大写字母。常量一旦赋值，就不允许再被改变。
+          </p>
+
+          <h4>5. 字符串型</h4>
+          <ul>
+            <li><strong>字符串的定义</strong>：字符串必须用双引号或者单引号包括起来。</li>
+            <li><strong>转义符</strong>：转义符"\"用于表示特殊字符，如"\n"表示换行。</li>
+            <li><strong>连接运算符</strong>：连接运算符"+"用于连接字符串。</li>
+          </ul>
+
+          <h3>任务实现</h3>
+          <p>在<code>&lt;head&gt;</code>标签内部输入以下代码：</p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <div class="code-title">JavaScript代码示例</div>
+              <button class="run-button" onclick="runTask1()">运行示例</button>
+            </div>
+            <pre>
+&lt;script&gt;
+var name = "张三";
+var gender = "男";
+document.write("姓名：" + name + "&lt;br/&gt;性别：" + gender);
+&lt;/script&gt;</pre
+            >
+          </div>
+
+          <div class="task-demo">
+            <p>点击下方按钮体验任务1效果：</p>
+            <button class="demo-button" onclick="runTask1Demo()">显示姓名和性别</button>
+            <div id="task1-result"></div>
+          </div>
+        </section>
+
+        <!-- 任务2：输入对话框 -->
+        <section id="task2" class="section">
+          <h2>任务2：输入对话框</h2>
+          <p>
+            打开页面，弹出一个输入对话框，要求输入姓名。输入确定后再次弹出输入对话框，要求输入性别。输入确定后，在页面打印刚刚输入的信息。
+          </p>
+
+          <h3>相关知识</h3>
+
+          <h4>1. Window对象</h4>
+          <p>
+            <code>window</code
+            >对象表示浏览器窗口。任何一个全局函数或变量都是<code>window</code>对象的属性，所以使用时，该对象常常省略不写。
+          </p>
+
+          <h4>2. prompt方法</h4>
+          <p><code>prompt</code>方法的功能是弹出一个输入对话框，格式是：</p>
+          <div class="code-container">
+            <pre>prompt(&lt;提示信息&gt; [, 默认值])</pre>
+          </div>
+          <p>其返回的值就是用户在对话框中输入的值，返回值的类型是字符串型。</p>
+
+          <h3>任务实现</h3>
+          <p>在<code>&lt;head&gt;</code>标签内部输入以下代码：</p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <div class="code-title">JavaScript代码示例</div>
+              <button class="run-button" onclick="runTask2()">运行示例</button>
+            </div>
+            <pre>
+&lt;script type="text/javascript"&gt;
+var name = window.prompt("请输入您的姓名：", "");
+var gender = window.prompt("请输入您的性别：", "男");
+document.write("姓名：" + name + "&lt;br/&gt;性别：" + gender);
+&lt;/script&gt;</pre
+            >
+          </div>
+
+          <div class="task-demo">
+            <p>点击下方按钮体验任务2效果：</p>
+            <button class="demo-button" onclick="runTask2Demo()">输入对话框示例</button>
+            <div id="task2-result"></div>
+          </div>
+        </section>
+
+        <!-- 任务3：判断是否为整数 -->
+        <section id="task3" class="section">
+          <h2>任务3：判断是否为整数</h2>
+          <p>
+            打开页面，弹出一个输入对话框，要求输入一个整数。如果输入的不是一个整数，则给出错误提示。
+          </p>
+
+          <h3>相关知识</h3>
+
+          <h4>1. 表达式</h4>
+          <p>
+            表达式可以是常量或者变量，也可以是由常量、变量和运算符号组成的语句。赋值语句也是表达式。比如下面这些都是合法的表达式：
+          </p>
+          <div class="code-container">
+            <pre>
+4.56
+true
+a > b
+a + b
+a = 10</pre
+            >
+          </div>
+
+          <h4>2. 布尔数据类型</h4>
+          <p>
+            布尔（boolean）是一种基本数据类型，表示真或者假，通俗的理解为是或者非，对或者错等。它常常用于判断一个结果的是非性。它的值只有两个：<code>true</code>（真）和<code>false</code>（假）。例如：<code
+              >8 > 4</code
+            >其结果就是<code>false</code>。再如：<code>a < 6</code
+            >如果<code>a</code>是一个比6小的值，则结果就是<code>true</code>，如果<code>a</code>是一个比6大或者等于6，结果就是<code>false</code>。
+          </p>
+
+          <h4>3. 关系运算符</h4>
+          <table class="operator-table">
+            <thead>
+              <tr>
+                <th>运算符</th>
+                <th>描述</th>
+                <th>示例</th>
+                <th>结果</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>==</td>
+                <td>等于</td>
+                <td>5 == 5</td>
+                <td>true</td>
+              </tr>
+              <tr>
+                <td>===</td>
+                <td>严格等于（值和类型）</td>
+                <td>5 === "5"</td>
+                <td>false</td>
+              </tr>
+              <tr>
+                <td>!=</td>
+                <td>不等于</td>
+                <td>5 != 4</td>
+                <td>true</td>
+              </tr>
+              <tr>
+                <td>!==</td>
+                <td>严格不等于</td>
+                <td>5 !== "5"</td>
+                <td>true</td>
+              </tr>
+              <tr>
+                <td>&gt;</td>
+                <td>大于</td>
+                <td>5 &gt; 4</td>
+                <td>true</td>
+              </tr>
+              <tr>
+                <td>&lt;</td>
+                <td>小于</td>
+                <td>5 &lt; 4</td>
+                <td>false</td>
+              </tr>
+              <tr>
+                <td>&gt;=</td>
+                <td>大于等于</td>
+                <td>5 &gt;= 5</td>
+                <td>true</td>
+              </tr>
+              <tr>
+                <td>&lt;=</td>
+                <td>小于等于</td>
+                <td>5 &lt;= 4</td>
+                <td>false</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>4. 判断语句</h4>
+          <h5>4.1 if语句</h5>
+          <p><strong>（1）if语句</strong></p>
+          <div class="code-container">
+            <pre>
+if(&lt;条件&gt;) {
+    [语句块]
+}</pre
+            >
+          </div>
+
+          <p><strong>（2）if...else语句</strong></p>
+          <div class="code-container">
+            <pre>
+if(&lt;条件&gt;) {
+    [语句块1]
+} else {
+    [语句块2]
+}</pre
+            >
+          </div>
+
+          <p><strong>（3）if...else if...else语句</strong></p>
+          <div class="code-container">
+            <pre>
+if(&lt;条件1&gt;) {
+    [语句块1]
+} else if(&lt;条件2&gt;) {
+    [语句块2]
+} else if(&lt;条件n&gt;) {
+    [语句块n]
+} else {
+    [语句块n+1]
+}</pre
+            >
+          </div>
+
+          <p><strong>（4）if语句的嵌套</strong></p>
+          <p>if语句允许嵌套，嵌套时注意if与else的匹配，不要出现交叉嵌套的现象。</p>
+
+          <h5>4.2 switch语句</h5>
+          <div class="code-container">
+            <pre>
+switch(&lt;变量或表达式&gt;) {
+    case &lt;数值1&gt;:
+        [语句块1]
+        break;
+    case &lt;数值2&gt;:
+        [语句块2]
+        break;
+    ...
+    case &lt;数值n&gt;:
+        [语句块n]
+        break;
+    default:
+        [语句块n+1]
+}</pre
+            >
+          </div>
+
+          <h4>5. 三目运算</h4>
+          <p>三目运算是根据条件执行两个语句中的其中一个，格式如下：</p>
+          <div class="code-container">
+            <pre>布尔表达式 ? 语句1 : 语句2</pre>
+          </div>
+          <p>当"布尔表达式"值为真时，执行"语句1"；当"布尔表达式"值为假时，执行"语句2"。</p>
+
+          <h3>任务实现</h3>
+          <p>在<code>&lt;head&gt;</code>标签内部输入以下代码：</p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <div class="code-title">JavaScript代码示例</div>
+              <button class="run-button" onclick="runTask3()">运行示例</button>
+            </div>
+            <pre>
+&lt;script type="text/javascript"&gt;
+var num = window.prompt("请输入一个整数：", "");
+if(parseInt(num) == num) {
+    document.write(num + "是整数");
+} else {
+    document.write(num + "不是整数");
+}
+&lt;/script&gt;</pre
+            >
+          </div>
+
+          <div class="task-demo">
+            <p>点击下方按钮体验任务3效果：</p>
+            <button class="demo-button" onclick="runTask3Demo()">判断整数示例</button>
+            <div id="task3-result"></div>
+          </div>
+        </section>
+
+        <!-- 任务4：判断指定范围的奇偶数 -->
+        <section id="task4" class="section">
+          <h2>任务4：判断指定范围的奇偶数</h2>
+          <p>
+            当页面被打开时，弹出一个输入对话框，要求输入一个指定范围的整数（10~100之间）。如果输入的内容为奇数且在指定范围内，则单击"确定"按钮后打印信息，提示该数为奇数。如果输入的内容为偶数且在指定范围内，则单击"确定"按钮后打印信息，提示该数为偶数。如果输入的内容为以下情况中的一种，就视为不合法输入，单击"确定"按钮后打印信息，提示错误。
+          </p>
+          <ol>
+            <li>输入的内容不是数字。</li>
+            <li>输入的内容是数字，但不是整数。</li>
+            <li>未进行任何输入。</li>
+            <li>不在指定范围。</li>
+          </ol>
+
+          <h3>相关知识</h3>
+
+          <h4>1. 逻辑运算符</h4>
+          <table class="operator-table">
+            <thead>
+              <tr>
+                <th>运算符</th>
+                <th>描述</th>
+                <th>示例</th>
+                <th>结果</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>&&</td>
+                <td>逻辑与</td>
+                <td>(5 > 3) && (5 > 2)</td>
+                <td>true</td>
+              </tr>
+              <tr>
+                <td>||</td>
+                <td>逻辑或</td>
+                <td>(5 > 3) || (5 < 2)</td>
+                <td>true</td>
+              </tr>
+              <tr>
+                <td>!</td>
+                <td>逻辑非</td>
+                <td>!(5 > 3)</td>
+                <td>false</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>2. 算术运算符</h4>
+          <table class="operator-table">
+            <thead>
+              <tr>
+                <th>运算符</th>
+                <th>描述</th>
+                <th>示例</th>
+                <th>结果</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>+</td>
+                <td>加法</td>
+                <td>5 + 3</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>减法</td>
+                <td>5 - 3</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>*</td>
+                <td>乘法</td>
+                <td>5 * 3</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td>/</td>
+                <td>除法</td>
+                <td>6 / 3</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>%</td>
+                <td>取模（求余）</td>
+                <td>5 % 3</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>++</td>
+                <td>自增</td>
+                <td>x = 5; x++</td>
+                <td>x = 6</td>
+              </tr>
+              <tr>
+                <td>--</td>
+                <td>自减</td>
+                <td>x = 5; x--</td>
+                <td>x = 4</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>3. 运算符的优先级</h4>
+          <p>
+            从高到低：括号 → 自增/自减 → 乘/除/取模 → 加/减 → 关系运算符 → 相等运算符 → 逻辑与 →
+            逻辑或 → 赋值运算符。
+          </p>
+
+          <h4>4. isNaN函数</h4>
+          <p>
+            <code>isNaN()</code
+            >函数接收一个参数，用于检查这个参数是否"不是数值"。<code>isNaN()</code>函数在接收到一个值之后，会尝试将这个值转换为数值，如果能成功转换，则返回<code>false</code>，否则返回<code>true</code>。该函数的基本语法是<code>isNaN(value)</code>，其中<code>value</code>就是要被检查的值。
+          </p>
+          <p>
+            需要注意的是，当<code>value</code>为空格（或者由空格组成的字符串）、<code>null</code>值时，该函数返回的值也是<code>false</code>，原因是<code>isNaN()</code>函数将这些值转换为了数字0。
+          </p>
+
+          <h3>任务实现</h3>
+          <p>在<code>&lt;head&gt;</code>标签输入下列代码：</p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <div class="code-title">JavaScript代码示例</div>
+              <button class="run-button" onclick="runTask4()">运行示例</button>
+            </div>
+            <pre>
+&lt;script&gt;
+var num = window.prompt("请输入一个整数(10~100)：", "");
+if(parseInt(num) == num && num >= 10 && num <= 100) {
+    var res = num % 2;
+    if(res == 0) {
+        document.write(num + "是偶数");
+    } else {
+        document.write(num + "是奇数");
+    }
+} else {
+    document.write("输入的数字不符合要求！");
+}
+&lt;/script&gt;</pre
+            >
+          </div>
+
+          <div class="task-demo">
+            <p>点击下方按钮体验任务4效果：</p>
+            <button class="demo-button" onclick="runTask4Demo()">判断奇偶数示例</button>
+            <div id="task4-result"></div>
+          </div>
+        </section>
+
+        <!-- 任务5：加法运算器 -->
+        <section id="task5" class="section">
+          <h2>任务5：加法运算器</h2>
+          <p>
+            打开页面，弹出输入对话框，要求输入一个被加数。输入确定后，再次弹出输入对话框，要求输入一个加数。输入确定后，打印这两个数的和。如果这两个数中只要有一个输入格式不正确，或者未输入任何值，都给出错误信息。
+          </p>
+
+          <h3>相关知识</h3>
+
+          <h4>1. 数字型</h4>
+          <p>JavaScript中的数字可以是整数或浮点数，例如：123、3.14、-5等。</p>
+
+          <h4>2. 数据类型的转换</h4>
+          <p>
+            <strong>2.1 隐式类型转换</strong
+            >：JavaScript在某些情况下会自动进行类型转换，例如在字符串和数字之间使用"+"运算符时，数字会被转换为字符串。
+          </p>
+          <p>
+            <strong>2.2 显示类型转换</strong
+            >：使用<code>parseInt()</code>、<code>parseFloat()</code>、<code>Number()</code>等函数进行显式转换。
+          </p>
+
+          <h4>3. 查看数据类型</h4>
+          <p>
+            可以使用<code>typeof</code>运算符查看一个数据的数据类型。<code>typeof</code>运算符有以下两种使用方式：
+          </p>
+          <div class="code-container">
+            <pre>
+typeof(带运算符号的表达式或者变量)
+typeof 变量名</pre
+            >
+          </div>
+
+          <h3>任务实现</h3>
+          <p>在<code>&lt;head&gt;</code>标签对中输入如下代码：</p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <div class="code-title">JavaScript代码示例</div>
+              <button class="run-button" onclick="runTask5()">运行示例</button>
+            </div>
+            <pre>
+&lt;script&gt;
+var num1 = window.prompt("请输入被加数：", 0);
+var num2 = window.prompt("请输入加数：", 0);
+if(parseFloat(num1) == num1 && parseFloat(num2) == num2) {
+    var res = parseFloat(num1) + parseFloat(num2);
+    document.write(num1 + "+" + num2 + "=" + res);
+} else {
+    document.write("输入的数字格式不正确！");
+}
+&lt;/script&gt;</pre
+            >
+          </div>
+
+          <div class="task-demo">
+            <p>点击下方按钮体验任务5效果：</p>
+            <button class="demo-button" onclick="runTask5Demo()">加法运算器示例</button>
+            <div id="task5-result"></div>
+          </div>
+        </section>
+
+        <!-- 任务6：项目实现 -->
+        <section id="task6" class="section">
+          <h2>任务6："项目2"的实现</h2>
+          <p>
+            在本任务中，需要提供输入对话框，以及检验用户输入的内容是否合法。只有当用户输入的所有内容都合法时才进行计算。当输入的数字合法但运算符号不合法时就要进行处理。当进行算术除法运算时，还要考虑除数为0的情况。因为要进行算术运算，并且考虑到小数的问题，所以还要把输入的数字转换为浮点数。最后，为了更完整地显示结果，还需要把数字类型和字符串类型的数据连接在一起输出。
+          </p>
+
+          <h3>项目分析</h3>
+          <p>本项目需要实现一个完整的四则运算计算器，包括：</p>
+          <ol>
+            <li>获取用户输入的两个数字和一个运算符</li>
+            <li>验证输入的数字是否合法（是否为数字）</li>
+            <li>验证运算符是否合法（是否为+、-、×、÷）</li>
+            <li>对于除法运算，检查除数是否为0</li>
+            <li>根据运算符执行相应的计算</li>
+            <li>显示计算结果或错误信息</li>
+          </ol>
+
+          <h3>项目实现</h3>
+          <p>在<code>&lt;head&gt;</code>标签对中输入以下代码：</p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <div class="code-title">JavaScript代码示例</div>
+              <button class="run-button" onclick="runTask6()">运行示例</button>
+            </div>
+            <pre>
+&lt;script&gt;
+var num1 = window.prompt("请输入第一个数：", 0);
+var num2 = window.prompt("请输入第二个数：", 0);
+var op = window.prompt("请输入一个运算符号(+、-、×、÷)：", "+");
+if(parseFloat(num1) == num1 && parseFloat(num2) == num2) {
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    var flag = 0;
+    var res = "";
+    switch(op) {
+        case "+":
+            res = num1 + num2;
+            break;
+        case "-":
+            res = num1 - num2;
+            break;
+        case "×":
+            res = num1 * num2;
+            break;
+        case "÷":
+            if(num2 != 0) { // 如果除数不为0
+                res = num1 / num2;
+            } else {
+                flag = 1;
+                res = "除数不能为0！";
+            }
+            break;
+        default: // 如果输入的运算符号不是+、-、×、÷中的任何一个
+            flag = 1;
+            res = "输入的运算符号错误！不能计算！";
+    }
+    if(flag == 0) {
+        document.write(num1 + op + num2 + "=" + res);
+    } else {
+        document.write(res);
+    }
+} else {
+    document.write("输入的数字格式错误！不能计算！");
+}
+&lt;/script&gt;</pre
+            >
+          </div>
+
+          <div class="task-demo">
+            <p>点击下方按钮体验任务6效果：</p>
+            <button class="demo-button" onclick="runTask6Demo()">完整计算器示例</button>
+            <div id="task6-result"></div>
+          </div>
+        </section>
+
+        <!-- 计算器演示 -->
+        <section id="project-demo" class="section">
+          <h2>计算器演示</h2>
+          <p>下面是项目二的完整演示，一个交互式的四则运算计算器。</p>
+
+          <div class="calculator-container">
+            <div class="calculator">
+              <h3>JavaScript四则运算计算器</h3>
+
+              <div class="input-group">
+                <label for="num1">第一个数：</label>
+                <input type="text" id="num1" placeholder="请输入数字" />
+              </div>
+
+              <div class="input-group">
+                <label for="operator">运算符：</label>
+                <select id="operator">
+                  <option value="+">+（加法）</option>
+                  <option value="-">-（减法）</option>
+                  <option value="×">×（乘法）</option>
+                  <option value="÷">÷（除法）</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="num2">第二个数：</label>
+                <input type="text" id="num2" placeholder="请输入数字" />
+              </div>
+
+              <div class="calculator-buttons">
+                <button class="calc-button" onclick="calculate()">计算</button>
+                <button class="calc-button reset" onclick="resetCalculator()">重置</button>
+              </div>
+
+              <div id="result-box" class="result-box">
+                <h4>计算结果：</h4>
+                <div id="result-content"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="task-demo">
+            <h3>项目总结</h3>
+            <p>通过本项目，我们学习了：</p>
+            <ul>
+              <li>变量和常量的定义与使用</li>
+              <li>JavaScript的基本数据类型和类型转换</li>
+              <li>关系运算符、逻辑运算符、算术运算符的使用</li>
+              <li>判断结构（if语句、switch语句）的使用</li>
+              <li>使用prompt()函数获取用户输入</li>
+              <li>输入验证和错误处理</li>
+              <li>实现一个完整的四则运算计算器</li>
+            </ul>
+            <p>
+              这个项目展示了如何使用JavaScript的判断结构来处理用户输入、验证数据并执行相应的计算，是理解JavaScript编程逻辑的重要实践。
+            </p>
+          </div>
+        </section>
+
+        <div class="footer">
+          <p>JavaScript学习项目二：简单计算器 —— 判断结构</p>
+          <p>基于项目二PPT内容创建的学习网站</p>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // 导航功能
+      const navLinks = document.querySelectorAll('.nav-link')
+      const sections = document.querySelectorAll('.section')
+
+      navLinks.forEach((link) => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault()
+
+          // 移除所有active类
+          navLinks.forEach((item) => item.classList.remove('active'))
+          sections.forEach((section) => section.classList.remove('active'))
+
+          // 添加当前active类
+          this.classList.add('active')
+          const targetId = this.getAttribute('href').substring(1)
+          document.getElementById(targetId).classList.add('active')
+        })
+      })
+
+      // 任务1函数
+      function runTask1Demo() {
+        document.getElementById('task1-result').innerHTML = `
+                <div class="alert-box success">
+                    <strong>姓名：</strong>张三<br>
+                    <strong>性别：</strong>男
+                </div>
+            `
+      }
+
+      function runTask1() {
+        alert('任务1代码已执行：显示姓名和性别')
+        runTask1Demo()
+      }
+
+      // 任务2函数
+      function runTask2Demo() {
+        const name = prompt('请输入您的姓名：', '')
+        const gender = prompt('请输入您的性别：', '男')
+
+        if (name !== null && gender !== null) {
+          document.getElementById('task2-result').innerHTML = `
+                    <div class="alert-box success">
+                        <strong>姓名：</strong>${name}<br>
+                        <strong>性别：</strong>${gender}
+                    </div>
+                `
+        }
+      }
+
+      function runTask2() {
+        alert('任务2代码已执行：将弹出输入对话框')
+        runTask2Demo()
+      }
+
+      // 任务3函数
+      function runTask3Demo() {
+        const num = prompt('请输入一个整数：', '')
+
+        if (num !== null) {
+          if (parseInt(num) == num) {
+            document.getElementById('task3-result').innerHTML = `
+                        <div class="alert-box success">${num}是整数</div>
+                    `
+          } else {
+            document.getElementById('task3-result').innerHTML = `
+                        <div class="alert-box error">${num}不是整数</div>
+                    `
+          }
+        }
+      }
+
+      function runTask3() {
+        alert('任务3代码已执行：将判断输入是否为整数')
+        runTask3Demo()
+      }
+
+      // 任务4函数
+      function runTask4Demo() {
+        const num = prompt('请输入一个整数(10~100)：', '')
+
+        if (num !== null) {
+          if (parseInt(num) == num && num >= 10 && num <= 100) {
+            const res = num % 2
+            if (res == 0) {
+              document.getElementById('task4-result').innerHTML = `
+                            <div class="alert-box success">${num}是偶数</div>
+                        `
+            } else {
+              document.getElementById('task4-result').innerHTML = `
+                            <div class="alert-box success">${num}是奇数</div>
+                        `
+            }
+          } else {
+            document.getElementById('task4-result').innerHTML = `
+                        <div class="alert-box error">输入的数字不符合要求！</div>
+                    `
+          }
+        }
+      }
+
+      function runTask4() {
+        alert('任务4代码已执行：将判断输入是否为10~100之间的奇偶数')
+        runTask4Demo()
+      }
+
+      // 任务5函数
+      function runTask5Demo() {
+        const num1 = prompt('请输入被加数：', 0)
+        const num2 = prompt('请输入加数：', 0)
+
+        if (num1 !== null && num2 !== null) {
+          if (parseFloat(num1) == num1 && parseFloat(num2) == num2) {
+            const res = parseFloat(num1) + parseFloat(num2)
+            document.getElementById('task5-result').innerHTML = `
+                        <div class="alert-box success">${num1} + ${num2} = ${res}</div>
+                    `
+          } else {
+            document.getElementById('task5-result').innerHTML = `
+                        <div class="alert-box error">输入的数字格式不正确！</div>
+                    `
+          }
+        }
+      }
+
+      function runTask5() {
+        alert('任务5代码已执行：将进行加法运算')
+        runTask5Demo()
+      }
+
+      // 任务6函数
+      function runTask6Demo() {
+        const num1 = prompt('请输入第一个数：', 0)
+        const num2 = prompt('请输入第二个数：', 0)
+        const op = prompt('请输入一个运算符号(+、-、×、÷)：', '+')
+
+        if (num1 !== null && num2 !== null && op !== null) {
+          if (parseFloat(num1) == num1 && parseFloat(num2) == num2) {
+            const n1 = parseFloat(num1)
+            const n2 = parseFloat(num2)
+            let flag = 0
+            let res = ''
+
+            switch (op) {
+              case '+':
+                res = n1 + n2
+                break
+              case '-':
+                res = n1 - n2
+                break
+              case '×':
+                res = n1 * n2
+                break
+              case '÷':
+                if (n2 != 0) {
+                  res = n1 / n2
+                } else {
+                  flag = 1
+                  res = '除数不能为0！'
+                }
+                break
+              default:
+                flag = 1
+                res = '输入的运算符号错误！不能计算！'
+            }
+
+            if (flag == 0) {
+              document.getElementById('task6-result').innerHTML = `
+                            <div class="alert-box success">${n1} ${op} ${n2} = ${res}</div>
+                        `
+            } else {
+              document.getElementById('task6-result').innerHTML = `
+                            <div class="alert-box error">${res}</div>
+                        `
+            }
+          } else {
+            document.getElementById('task6-result').innerHTML = `
+                        <div class="alert-box error">输入的数字格式错误！不能计算！</div>
+                    `
+          }
+        }
+      }
+
+      function runTask6() {
+        alert('任务6代码已执行：将实现完整的四则运算计算器')
+        runTask6Demo()
+      }
+
+      // 计算器函数
+      function calculate() {
+        const num1 = document.getElementById('num1').value
+        const num2 = document.getElementById('num2').value
+        const op = document.getElementById('operator').value
+        const resultBox = document.getElementById('result-box')
+        const resultContent = document.getElementById('result-content')
+
+        // 验证输入
+        if (num1 === '' || num2 === '') {
+          resultContent.innerHTML = '<div class="alert-box error">请输入两个数字！</div>'
+          resultBox.style.display = 'block'
+          return
+        }
+
+        if (isNaN(num1) || isNaN(num2)) {
+          resultContent.innerHTML = '<div class="alert-box error">输入的不是有效数字！</div>'
+          resultBox.style.display = 'block'
+          return
+        }
+
+        const n1 = parseFloat(num1)
+        const n2 = parseFloat(num2)
+        let result
+        let error = false
+
+        // 根据运算符进行计算
+        switch (op) {
+          case '+':
+            result = n1 + n2
+            break
+          case '-':
+            result = n1 - n2
+            break
+          case '×':
+            result = n1 * n2
+            break
+          case '÷':
+            if (n2 === 0) {
+              resultContent.innerHTML = '<div class="alert-box error">除数不能为0！</div>'
+              resultBox.style.display = 'block'
+              error = true
+              return
+            }
+            result = n1 / n2
+            break
+          default:
+            resultContent.innerHTML = '<div class="alert-box error">无效的运算符！</div>'
+            resultBox.style.display = 'block'
+            error = true
+            return
+        }
+
+        if (!error) {
+          resultContent.innerHTML = `
+                    <div class="alert-box success">
+                        <strong>计算表达式：</strong>${n1} ${op} ${n2}<br>
+                        <strong>计算结果：</strong>${result}
+                    </div>
+                `
+          resultBox.style.display = 'block'
+        }
+      }
+
+      function resetCalculator() {
+        document.getElementById('num1').value = ''
+        document.getElementById('num2').value = ''
+        document.getElementById('operator').value = '+'
+        document.getElementById('result-box').style.display = 'none'
+      }
+
+      // 页面加载时初始化
+      document.addEventListener('DOMContentLoaded', function () {
+        console.log('JavaScript学习网站（项目二）已加载完成')
+      })
+    </script>
+  </body>
+</html>

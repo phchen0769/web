@@ -1,0 +1,19 @@
+header {
+  width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: '微软雅黑';
+  background: #fdfdfd;
+}
+
+ul {
+  display: inline;
+  width: 600px;
+  /* line-height: 57px; */
+}
+li {
+  display: inline;
+}
+header span {
+  width: 30%;
+}

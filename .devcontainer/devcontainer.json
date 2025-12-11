@@ -19,8 +19,6 @@
 		// Configure properties specific to VS Code.
 		"vscode": {
 			"extensions": [
-				"VisualStudioExptTeam.vscodeintellicode",
-				"VisualStudioExptTeam.intellicode-api-usage-examples",
 				"Vue.volar",
 				"sdras.vue-vscode-snippets",
 				"dariofuzinato.vue-peek",
@@ -42,7 +40,7 @@
 				"ms-vscode.vscode-typescript-next",
 				"MarsCode.marscode-extension",
 				"mariorodeghiero.vue-theme",
-				"FittenTech.Fitten-Code"
+				"Alibaba-Cloud.tongyi-lingma"
 			]
 		}
 	}
