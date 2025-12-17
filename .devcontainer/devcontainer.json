@@ -40,7 +40,10 @@
 				"ms-vscode.vscode-typescript-next",
 				"MarsCode.marscode-extension",
 				"mariorodeghiero.vue-theme",
-				"Alibaba-Cloud.tongyi-lingma"
+				"Alibaba-Cloud.tongyi-lingma",
+				"ecmel.vscode-html-css",
+				"sidthesloth.html5-boilerplate",
+				"mohd-akram.vscode-html-format"
 			]
 		}
 	}
