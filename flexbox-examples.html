@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox 学习示例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+
+        .example-title {
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* 返回首页按钮 */
+        .back-to-home {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .back-to-home:hover {
+            background-color: #2c3e50;
+            transform: translateY(-3px);
+        }
+
+        .back-to-home:active {
+            transform: translateY(0);
+        }
+
+        /* 外部资源链接 */
+        .external-resources {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .external-resources h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+
+        .external-resources ul {
+            padding-left: 20px;
+        }
+
+        .external-resources li {
+            margin-bottom: 10px;
+        }
+
+        .external-resources a {
+            color: #1976d2;
+            text-decoration: none;
+        }
+
+        .external-resources a:hover {
+            text-decoration: underline;
+        }
+
+        /* 代码展示样式 */
+        .code-container {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .code-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* 基础Flexbox容器 */
+        .flex-container {
+            display: flex;
+            background-color: #f0f8ff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        .flex-item {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            margin: 5px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        /* 不同的Flexbox示例 */
+
+        /* 1. 基础水平排列 */
+        .flex-basic {
+            display: flex;
+        }
+
+        /* 2. 垂直排列 */
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 3. 居中对齐 */
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        /* 4. 两端对齐 */
+        .flex-space-between {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* 5. 环绕对齐 */
+        .flex-space-around {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        /* 6. 垂直居中 */
+        .flex-vertical-center {
+            display: flex;
+            align-items: center;
+            height: 150px;
+        }
+
+        /* 7. 不同的flex-grow */
+        .flex-grow-container {
+            display: flex;
+        }
+
+        .flex-grow-1 {
+            flex-grow: 1;
+        }
+
+        .flex-grow-2 {
+            flex-grow: 2;
+        }
+
+        /* 8. 不同的flex-basis */
+        .flex-basis-container {
+            display: flex;
+        }
+
+        .flex-basis-small {
+            flex-basis: 100px;
+        }
+
+        .flex-basis-large {
+            flex-basis: 300px;
+        }
+
+        /* 9. 换行 */
+        .flex-wrap {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .flex-wrap .flex-item {
+            flex-basis: 200px;
+        }
+
+        /* 10. 复杂布局 - 顶部导航 */
+        .navbar {
+            display: flex;
+            background-color: #333;
+            padding: 0 20px;
+        }
+
+        .nav-brand {
+            flex-grow: 1;
+            padding: 15px 0;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            padding: 15px 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+
+        /* 11. 卡片布局 */
+        .card-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .card {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        /* 12. 侧边栏布局 */
+        .layout-container {
+            display: flex;
+            min-height: 300px;
+        }
+
+        .sidebar {
+            flex: 0 0 200px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        /* 13. 响应式布局 */
+        .responsive-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .responsive-item {
+            flex: 1 1 300px;
+            background-color: #2196F3;
+            color: white;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flexbox 学习示例</h1>
+    
+    <!-- 外部学习资源 -->
+    <div class="external-resources">
+        <h3>外部学习资源</h3>
+        <ul>
+            <li>
+                <a href="https://flexboxfroggy.com/#zh-cn" target="_blank">
+                    Flexbox Froggy - 通过游戏学习Flexbox布局
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <h2 class="example-title">1. 基础水平排列</h2>
+        <div class="flex-container flex-basic">
+            <div class="flex-item">项目 1</div>
+            <div class="flex-item">项目 2</div>
+            <div class="flex-item">项目 3</div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.flex-container {
+    display: flex;
+}
+
+.flex-item {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 4px;
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">2. 垂直排列</h2>
+        <div class="flex-container flex-column">
+            <div class="flex-item">项目 1</div>
+            <div class="flex-item">项目 2</div>
+            <div class="flex-item">项目 3</div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">3. 完全居中</h2>
+        <div class="flex-container flex-center">
+            <div class="flex-item">居中项目</div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.flex-container {
+    display: flex;
+    justify-content: center;  /* 水平居中 */
+    align-items: center;      /* 垂直居中 */
+    height: 200px;
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">4. 两端对齐</h2>
+        <div class="flex-container flex-space-between">
+            <div class="flex-item">项目 1</div>
+            <div class="flex-item">项目 2</div>
+            <div class="flex-item">项目 3</div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.flex-container {
+    display: flex;
+    justify-content: space-between;  /* 两端对齐 */
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">5. 环绕对齐</h2>
+        <div class="flex-container flex-space-around">
+            <div class="flex-item">项目 1</div>
+            <div class="flex-item">项目 2</div>
+            <div class="flex-item">项目 3</div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.flex-container {
+    display: flex;
+    justify-content: space-around;  /* 环绕对齐 */
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">6. 垂直居中</h2>
+        <div class="flex-container flex-vertical-center">
+            <div class="flex-item">垂直居中</div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.flex-container {
+    display: flex;
+    align-items: center;  /* 垂直居中 */
+    height: 150px;
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">7. 不同的flex-grow</h2>
+        <div class="flex-container flex-grow-container">
+            <div class="flex-item flex-grow-1">flex-grow: 1</div>
+            <div class="flex-item flex-grow-2">flex-grow: 2</div>
+            <div class="flex-item flex-grow-1">flex-grow: 1</div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.flex-container {
+    display: flex;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;  /* 占据1份剩余空间 */
+}
+
+.flex-grow-2 {
+    flex-grow: 2;  /* 占据2份剩余空间 */
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">8. 不同的flex-basis</h2>
+        <div class="flex-container flex-basis-container">
+            <div class="flex-item flex-basis-small">basis: 100px</div>
+            <div class="flex-item flex-basis-large">basis: 300px</div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.flex-container {
+    display: flex;
+}
+
+.flex-basis-small {
+    flex-basis: 100px;  /* 初始大小为100px */
+}
+
+.flex-basis-large {
+    flex-basis: 300px;  /* 初始大小为300px */
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">9. 换行</h2>
+        <div class="flex-container flex-wrap">
+            <div class="flex-item">项目 1</div>
+            <div class="flex-item">项目 2</div>
+            <div class="flex-item">项目 3</div>
+            <div class="flex-item">项目 4</div>
+            <div class="flex-item">项目 5</div>
+            <div class="flex-item">项目 6</div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;  /* 允许换行 */
+}
+
+.flex-item {
+    flex-basis: 200px;  /* 设置基础宽度 */
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">10. 导航栏布局</h2>
+        <div class="flex-container navbar">
+            <div class="nav-brand">我的网站</div>
+            <ul class="nav-links">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">服务</a></li>
+                <li><a href="#">联系</a></li>
+            </ul>
+        </div>
+        <div class="code-container">
+            <div class="code-header">HTML 和 CSS 代码:</div>
+            <pre>
+&lt;!-- HTML --&gt;
+&lt;div class="navbar"&gt;
+    &lt;div class="nav-brand"&gt;我的网站&lt;/div&gt;
+    &lt;ul class="nav-links"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;首页&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;关于我们&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;服务&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;联系&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- CSS --&gt;
+.navbar {
+    display: flex;
+    background-color: #333;
+    padding: 0 20px;
+}
+
+.nav-brand {
+    flex-grow: 1;  /* 占据剩余空间 */
+    padding: 15px 0;
+    color: white;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    padding: 15px 20px;
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">11. 卡片布局</h2>
+        <div class="flex-container card-container">
+            <div class="card">
+                <h3>卡片 1</h3>
+                <p>这是卡片1的内容</p>
+            </div>
+            <div class="card">
+                <h3>卡片 2</h3>
+                <p>这是卡片2的内容</p>
+            </div>
+            <div class="card">
+                <h3>卡片 3</h3>
+                <p>这是卡片3的内容</p>
+            </div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.card-container {
+    display: flex;
+    gap: 20px;  /* 元素间间距 */
+}
+
+.card {
+    flex: 1;  /* 平均分配空间 */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">12. 侧边栏布局</h2>
+        <div class="flex-container layout-container">
+            <div class="sidebar">
+                <h3>侧边栏</h3>
+                <ul>
+                    <li>菜单项 1</li>
+                    <li>菜单项 2</li>
+                    <li>菜单项 3</li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <h3>主要内容</h3>
+                <p>这是主要内容区域。在Flexbox布局中，我们可以轻松创建侧边栏和主内容区域。</p>
+            </div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.layout-container {
+    display: flex;
+    min-height: 300px;
+}
+
+.sidebar {
+    flex: 0 0 200px;  /* 不放大，不缩小，基础宽度200px */
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+.main-content {
+    flex: 1;  /* 占据剩余空间 */
+    background-color: #f9f9f9;
+    padding: 20px;
+}</pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="example-title">13. 响应式布局</h2>
+        <div class="flex-container responsive-container">
+            <div class="responsive-item">响应式项目 1</div>
+            <div class="responsive-item">响应式项目 2</div>
+            <div class="responsive-item">响应式项目 3</div>
+        </div>
+        <div class="code-container">
+            <div class="code-header">CSS 代码:</div>
+            <pre>
+.responsive-container {
+    display: flex;
+    flex-wrap: wrap;  /* 允许换行 */
+}
+
+.responsive-item {
+    flex: 1 1 300px;  /* 放大、缩小，基础宽度300px */
+    background-color: #2196F3;
+    color: white;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 4px;
+}</pre>
+        </div>
+    </div>
+    
+    <!-- 返回首页按钮 -->
+    <a href="index.html" class="back-to-home" title="返回首页">🏠</a>
+</body>
+</html>
